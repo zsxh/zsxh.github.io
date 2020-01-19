@@ -1,0 +1,81 @@
+#+title: Org Export Demo
+#+date: <2020-01-16 16:10>
+#+startup: showall
+
+* Welcome
+  This page is demo page created by org-mode.
+
+* Org-mode Elements
+
+** Ordered lists
+
+1. A
+2. B
+3. C
+
+** Unordered lists
+- A
+- B
+- C
+
+** Links
+[[https://zsxh.github.io][zsxh github]]
+
+
+** Images(Which are responsive!)
+https://julialang.org/images/onlinestats.gif
+
+[[file:../image/bearsshow.png]]
+
+
+** Tables(Which are responsive!)
+
+|   |  N | N^2 | N^3 | N^4 | sqrt(n) | sqrt[4](N) |      Sum |  Doubled |
+|---+----+-----+-----+-----+---------+------------+----------+----------|
+| / | <> |   < |     |   > |       < |          > |          |          |
+| # |  1 |   1 |   1 |   1 |       1 |          1 |        6 |       12 |
+| # |  2 |   4 |   8 |  16 |  1.4142 |     1.1892 |  32.6034 |  65.2068 |
+| # |  3 |   9 |  27 |  81 |  1.7321 |     1.3161 | 123.0482 | 246.0964 |
+|---+----+-----+-----+-----+---------+------------+----------+----------|
+#+TBLFM: $8=vsum($2..$7)::$9=2*$8
+
+** Latex
+
+$$\int_{a}^{b} x^2 dx$$
+
+** Code
+
+#+BEGIN_SRC python :results output
+  def fact(n):
+      "Returns the factorial of a number"
+      if(n <= 1): return 1
+      else: return n*fact(n-1)
+
+  print(fact(3))
+#+END_SRC
+
+#+begin_src sh
+  uname
+#+end_src
+
+#+RESULTS:
+: Linux
+
+** Quotes
+
+#+BEGIN_QUOTE
+Insanity: doing the same thing over and over again and expecting different results.
+
+Albert Einstein
+ #+END_QUOTE
+
+** Checkboxes
+
+- [X] Checked
+- [ ] Unchecked
+
+** TODO An item that needs done
+** DONE An item that is done
+** Tags                                                               :tag1:tag2:
+** Font styling
+*Bold* /italic/ _underlined_ =verbatim= ~code~ +strike-through+ 中文

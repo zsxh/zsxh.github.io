@@ -1,0 +1,266 @@
+/* @import url('https://fonts.googleapis.com/css?family=Elsie&display=swap'); */
+
+/* latin-ext */
+@font-face {
+  font-family: 'Elsie';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Elsie Regular'), local('Elsie-Regular'), url(elsie-regular-mininal.woff2)  format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Elsie';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Elsie Regular'), local('Elsie-Regular'), url(elsie-regular-full.woff2)  format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Variables. Feel free to edit these! */
+:root {
+    --color-primary: #028090;
+    --color-secondary: #00A896;
+
+    --color-soft-white: #FFFFF0;
+
+    --color-soft-black: #444;
+    --color-hard-black: #222;
+
+    --color-special-todo: #790604;
+
+    --font-normal: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman";
+    --font-headings: 'Elsie', cursive;
+
+    --font-size-1: 33.57px;
+    --font-size-2: 26.86px;
+    --font-size-3: 21.48px;
+    --font-size-4: 17.19px;
+
+    --font-size-small: 11px;
+}
+
+/* Selection color */
+::selection {
+    background-color: var(--color-primary);
+    color: var(--color-soft-white);
+}
+
+/* Remove outer padding */
+html, body{
+    margin: 0;
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6{
+    color: var(--color-hard-black);
+    font-family: var(--font-headings)
+}
+
+/* Scaled font sizes */
+h1{font-size: var(--font-size-1);}
+h2{font-size: var(--font-size-2);}
+h3{font-size: var(--font-size-3);}
+h3{font-size: var(--font-size-4);}
+h4{font-size: var(--font-size-4);}
+h5{font-size: var(--font-size-4);}
+
+h1 > .subtitle{
+    font-size: 21.48px;
+}
+
+/* Normal text style */
+p, pre, ol, ul, table{
+    color: #444;
+    font-size: var(--font-size-4);
+    font-family: var(--font-normal)
+}
+
+code {
+	padding: 2px 4px;
+	font-size: 90%;
+	color: #c7254e;
+	background-color: #f9f2f4;
+	border-radius: 4px;
+}
+
+li code {
+  color: #444;
+  font-size: var(--font-size-4);
+  font-family: var(--font-normal);
+  background-color: transparent;
+}
+
+/* Better anchor tags */
+a{
+    color: inherit;
+}
+
+a:hover{
+    color: var(--color-secondary);
+}
+
+/* Force footer to bottom and center */
+#postamble{
+    text-align: center;
+    /* width: 100%; */
+}
+
+#postamble > p{
+    display: inline;
+}
+
+.title{
+   padding: 2vh 5vw;
+}
+
+
+/* Responsive images */
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive code blocks and tables */
+pre, .outline-text-2, .outline-text-3, outline-text-4{
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* Responsive content positioning */
+@media only screen and (min-width: 750px) /* Large screens */
+{
+  .outline-2, #postamble {
+    padding: 2vh 20vw;
+  }
+}
+
+@media only screen and (max-width: 750px) /* Small screens */
+{
+  .outline-2, #postamble {
+    padding: 2vh 5vw;
+  }
+}
+
+
+/* Code blocks */
+.org-keyword{
+    color: var(--color-primary);
+}
+
+.org-rainbow-delimiters-depth-1{
+    color: var(--color-secondary);
+}
+
+.org-org-meta-line{
+    color: var(--color-primary);
+}
+blockquote{
+    border-left:5px solid var(--color-primary);
+    padding-left: 10px;
+}
+
+.todo{
+    color: var(--color-special-todo);
+}
+
+.done{
+    color: var(--color-primary);
+}
+
+/* Tags.
+   The way org exports tags is a little strange.
+   They are exported as a span with class "tag" containing each
+   of the tags in its own span with class and contents equal to
+   the tags name. This is actually really useful as it allows
+   for targeting both the "tag group" and each tag individually */
+
+.tag{
+    margin-top: 5px;
+    display: block;
+    color: var(--color-soft-white);
+    font-size: var(--font-size-small);
+    font-family: var(--font-normal)
+
+}
+
+.tag > span{
+    background-color: var(--color-secondary);
+    text-transform: uppercase;
+    border-radius: 2px;
+    width: fit-content;
+    height: auto;
+    padding: 1px 5px;
+    margin: 1px;
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+thead, tbody {
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+}
+
+th, td {
+	padding: 6px 6px;
+}
+
+colgroup {
+  border: 1px solid var(--color-soft-black);
+}
+
+colgroup:first-of-type {
+  border-left: 0px;
+}
+
+colgroup:last-of-type {
+  border-right: 0px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/* Code */
+.src {
+    margin: 1rem;
+    background-color: #EEE;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    font-size: 0.9rem !important;
+}
+
+/* Code Result*/
+.example {
+  margin: 0rem 1rem 0rem 1rem;
+  padding: 0rem 0.5rem 0rem 0.5rem;
+  font-size: 0.9rem !important;
+  border-left: 5px solid;
+  border-left-color: purple;
+}
+
+.post-title, .post-date{
+  text-align: center;
+}
+
+#archive {
+  padding: 1rem;
+  text-align: center;
+}
+
+#archive a {
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  text-decoration: none;
+}
+
+#preamble {
+  text-align: right;
+}
+
+#postamble center {
+  margin-top: 1rem;
+}
