@@ -78,4 +78,4 @@ Albert Einstein
 ** DONE An item that is done
 ** Tags                                                               :tag1:tag2:
 ** Font styling
-*Bold* /italic/ _underlined_ =verbatim= ~code~ +strike-through+ 中文
+*Bold* /italic/ _underlined_ =verbatim= ~code~ +strike-through+ 中文文本
