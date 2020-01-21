@@ -4,27 +4,27 @@
 <title><![CDATA[ZSXH]]></title>
 <description><![CDATA[ZSXH]]></description>
 <link>https://zsxh.github.io/</link>
-<lastBuildDate>日, 19 1月 2020 20:39:24 +0800</lastBuildDate>
+<lastBuildDate>二, 21 1月 2020 11:44:23 +0800</lastBuildDate>
 <item>
   <title><![CDATA[Org Export Demo]]></title>
   <description><![CDATA[
-<div class="post-date"> Created: 2020-01-16&ensp;Updated: 2020-01-19</div>
-<div id="outline-container-org5012ff7" class="outline-2">
-<h2 id="org5012ff7">Welcome</h2>
-<div class="outline-text-2" id="text-org5012ff7">
+<div class="post-date"> Posted: 2020-01-16&ensp;Updated: 2020-01-21</div>
+<div id="outline-container-org9b86651" class="outline-2">
+<h2 id="org9b86651">Welcome</h2>
+<div class="outline-text-2" id="text-org9b86651">
 <p>
 This page is demo page created by org-mode.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd02c4be" class="outline-2">
-<h2 id="orgd02c4be">Org-mode Elements</h2>
-<div class="outline-text-2" id="text-orgd02c4be">
+<div id="outline-container-org81d0695" class="outline-2">
+<h2 id="org81d0695">Org-mode Elements</h2>
+<div class="outline-text-2" id="text-org81d0695">
 </div>
-<div id="outline-container-org733f06d" class="outline-3">
-<h3 id="org733f06d">Ordered lists</h3>
-<div class="outline-text-3" id="text-org733f06d">
+<div id="outline-container-org2f0992d" class="outline-3">
+<h3 id="org2f0992d">Ordered lists</h3>
+<div class="outline-text-3" id="text-org2f0992d">
 <ol class="org-ol">
 <li>A</li>
 <li>B</li>
@@ -33,9 +33,9 @@ This page is demo page created by org-mode.
 </div>
 </div>
 
-<div id="outline-container-org89a719d" class="outline-3">
-<h3 id="org89a719d">Unordered lists</h3>
-<div class="outline-text-3" id="text-org89a719d">
+<div id="outline-container-org43f43a4" class="outline-3">
+<h3 id="org43f43a4">Unordered lists</h3>
+<div class="outline-text-3" id="text-org43f43a4">
 <ul class="org-ul">
 <li>A</li>
 <li>B</li>
@@ -44,9 +44,9 @@ This page is demo page created by org-mode.
 </div>
 </div>
 
-<div id="outline-container-orgdbffcc7" class="outline-3">
-<h3 id="orgdbffcc7">Links</h3>
-<div class="outline-text-3" id="text-orgdbffcc7">
+<div id="outline-container-org79e73e3" class="outline-3">
+<h3 id="org79e73e3">Links</h3>
+<div class="outline-text-3" id="text-org79e73e3">
 <p>
 <a href="https://zsxh.github.io">zsxh github</a>
 </p>
@@ -54,9 +54,9 @@ This page is demo page created by org-mode.
 </div>
 
 
-<div id="outline-container-org13b30a7" class="outline-3">
-<h3 id="org13b30a7">Images(Which are responsive!)</h3>
-<div class="outline-text-3" id="text-org13b30a7">
+<div id="outline-container-org5ce9927" class="outline-3">
+<h3 id="org5ce9927">Images(Which are responsive!)</h3>
+<div class="outline-text-3" id="text-org5ce9927">
 
 <figure>
 <img src="https://julialang.org/images/onlinestats.gif" alt="onlinestats.gif">
@@ -65,16 +65,16 @@ This page is demo page created by org-mode.
 
 
 <figure>
-<img src="../image/bearsshow.png" alt="bearsshow.png">
+<img src="../images/bearsshow.png" alt="bearsshow.png">
 
 </figure>
 </div>
 </div>
 
 
-<div id="outline-container-org1b386ef" class="outline-3">
-<h3 id="org1b386ef">Tables(Which are responsive!)</h3>
-<div class="outline-text-3" id="text-org1b386ef">
+<div id="outline-container-org3631302" class="outline-3">
+<h3 id="org3631302">Tables(Which are responsive!)</h3>
+<div class="outline-text-3" id="text-org3631302">
 <table>
 
 
@@ -151,18 +151,18 @@ This page is demo page created by org-mode.
 </div>
 </div>
 
-<div id="outline-container-org69e284e" class="outline-3">
-<h3 id="org69e284e">Latex</h3>
-<div class="outline-text-3" id="text-org69e284e">
+<div id="outline-container-orga0706fc" class="outline-3">
+<h3 id="orga0706fc">Latex</h3>
+<div class="outline-text-3" id="text-orga0706fc">
 <p>
 \[\int_{a}^{b} x^2 dx\]
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5ef84a2" class="outline-3">
-<h3 id="org5ef84a2">Code</h3>
-<div class="outline-text-3" id="text-org5ef84a2">
+<div id="outline-container-orgf16aaa0" class="outline-3">
+<h3 id="orgf16aaa0">Code</h3>
+<div class="outline-text-3" id="text-orgf16aaa0">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #859900; font-weight: bold;">def</span> <span style="color: #b58900;">fact</span>(n):
     <span style="color: #35a69c; font-style: italic;">"Returns the factorial of a number"</span>
@@ -184,9 +184,9 @@ Linux
 </div>
 </div>
 
-<div id="outline-container-org4b87c0b" class="outline-3">
-<h3 id="org4b87c0b">Quotes</h3>
-<div class="outline-text-3" id="text-org4b87c0b">
+<div id="outline-container-orge67b615" class="outline-3">
+<h3 id="orge67b615">Quotes</h3>
+<div class="outline-text-3" id="text-orge67b615">
 <blockquote>
 <p>
 Insanity: doing the same thing over and over again and expecting different results.
@@ -199,9 +199,9 @@ Albert Einstein
 </div>
 </div>
 
-<div id="outline-container-orge361d0e" class="outline-3">
-<h3 id="orge361d0e">Checkboxes</h3>
-<div class="outline-text-3" id="text-orge361d0e">
+<div id="outline-container-org10a4851" class="outline-3">
+<h3 id="org10a4851">Checkboxes</h3>
+<div class="outline-text-3" id="text-org10a4851">
 <ul class="org-ul">
 <li class="on"><code>[X]</code> Checked</li>
 <li class="off"><code>[&#xa0;]</code> Unchecked</li>
@@ -209,18 +209,18 @@ Albert Einstein
 </div>
 </div>
 
-<div id="outline-container-org14c92e2" class="outline-3">
-<h3 id="org14c92e2"><span class="todo TODO">TODO</span> An item that needs done</h3>
+<div id="outline-container-org1c1e6b7" class="outline-3">
+<h3 id="org1c1e6b7"><span class="todo TODO">TODO</span> An item that needs done</h3>
 </div>
-<div id="outline-container-org5fdde53" class="outline-3">
-<h3 id="org5fdde53"><span class="done DONE">DONE</span> An item that is done</h3>
+<div id="outline-container-orgdd22b30" class="outline-3">
+<h3 id="orgdd22b30"><span class="done DONE">DONE</span> An item that is done</h3>
 </div>
-<div id="outline-container-org8b8bcf1" class="outline-3">
-<h3 id="org8b8bcf1">Tags&#xa0;&#xa0;&#xa0;<span class="tag"><span class="tag1">tag1</span>&#xa0;<span class="tag2">tag2</span></span></h3>
+<div id="outline-container-org9f16209" class="outline-3">
+<h3 id="org9f16209">Tags&#xa0;&#xa0;&#xa0;<span class="tag"><span class="tag1">tag1</span>&#xa0;<span class="tag2">tag2</span></span></h3>
 </div>
-<div id="outline-container-orgbeac521" class="outline-3">
-<h3 id="orgbeac521">Font styling</h3>
-<div class="outline-text-3" id="text-orgbeac521">
+<div id="outline-container-org40e820b" class="outline-3">
+<h3 id="org40e820b">Font styling</h3>
+<div class="outline-text-3" id="text-org40e820b">
 <p>
 <b>Bold</b> <i>italic</i> <span class="underline">underlined</span> <code>verbatim</code> <code>code</code> <del>strike-through</del> 中文文本
 </p>

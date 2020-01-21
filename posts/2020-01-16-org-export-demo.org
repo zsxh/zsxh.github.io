@@ -25,7 +25,7 @@
 ** Images(Which are responsive!)
 https://julialang.org/images/onlinestats.gif
 
-[[file:../image/bearsshow.png]]
+[[file:../images/bearsshow.png]]
 
 
 ** Tables(Which are responsive!)
