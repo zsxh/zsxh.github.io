@@ -1,6 +1,7 @@
 #+title: Org Export Demo
 #+date: <2020-01-16 16:10>
 #+startup: showall
+#+filetags: :org-mode:
 
 * Welcome
   This page is demo page created by org-mode.
