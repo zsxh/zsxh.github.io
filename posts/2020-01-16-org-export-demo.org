@@ -55,7 +55,7 @@ $$\int_{a}^{b} x^2 dx$$
   print(fact(3))
 #+END_SRC
 
-#+begin_src sh
+#+begin_src shell
   uname
 #+end_src
 

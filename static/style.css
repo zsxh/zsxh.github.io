@@ -242,7 +242,8 @@ table {
   border-radius: 0.4em;
 }
 
-.post-title, .post-date{
+h1.post-title,
+h1.post-date {
   text-align: center;
 }
 
