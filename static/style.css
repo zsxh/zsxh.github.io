@@ -243,7 +243,8 @@ table {
 }
 
 h1.post-title,
-h1.post-title + div.post-date {
+h1.post-title + div.post-date,
+.taglist {
   text-align: center;
 }
 
