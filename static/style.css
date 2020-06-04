@@ -111,11 +111,6 @@ a:hover{
     display: inline;
 }
 
-.title{
-   padding: 2vh 5vw;
-}
-
-
 /* Responsive images */
 img{
     max-width: 100%;
@@ -131,7 +126,7 @@ pre, .outline-text-2, .outline-text-3, outline-text-4{
 /* Responsive content positioning */
 @media only screen and (min-width: 750px) /* Large screens */
 {
-  .outline-2, #postamble {
+  .outline-2, #postamble, .title, h2.post-title {
     padding: 2vh 20vw;
   }
 }
