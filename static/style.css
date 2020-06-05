@@ -275,7 +275,8 @@ h1.post-title + div.post-date,
   text-decoration: none;
 }
 
-.org-src-container > pre::before {
+.org-src-container > pre::before,
+.org-src-container + .example::before {
 	display: block;
 	position: absolute;
 	background-color: #b3b3b3;
@@ -288,11 +289,11 @@ h1.post-title + div.post-date,
 	font-size: 80%;
 }
 
-.org-src-container>pre {
+.org-src-container > pre {
  overflow:auto
 }
 
-.org-src-container {
+.org-src-container, .example {
  /* border:1px solid #ccc; */
  /* box-shadow:3px 3px 3px #eee; */
  /* font-family:Lucida Console,monospace; */
@@ -303,68 +304,72 @@ h1.post-title + div.post-date,
  /* background-color: #EEE; */
 }
 
+.org-src-container + .example::before {
+  content:"result"
+}
+
 /* TODO: pre.src-lang:before */
 /* https://orgmode.org/worg/org-contrib/babel/languages.html */
 .org-src-container>pre.src-python:before {
- content:"python"
+  content:"python"
 }
 .org-src-container>pre.src-emacs-lisp:before {
- content:"emacs-lisp"
+  content:"emacs-lisp"
 }
 .org-src-container>pre.src-C:before {
- content:"C"
+  content:"C"
 }
 .org-src-container>pre.src-cpp:before {
- content:"cpp"
+  content:"cpp"
 }
 .org-src-container>pre.src-java:before {
- content:"java"
+  content:"java"
 }
 .org-src-container>pre.src-js:before {
- content:"js"
+  content:"js"
 }
 .org-src-container>pre.src-lisp:before {
- content:"lisp"
+  content:"lisp"
 }
 .org-src-container>pre.src-css:before {
- content:"css"
+  content:"css"
 }
 .org-src-container>pre.src-sass:before {
- content:"sass"
+  content:"sass"
 }
 .org-src-container>pre.src-sass:before {
- content:"sass"
+  content:"sass"
 }
 .org-src-container>pre.src-scala:before {
- content:"scala"
+  content:"scala"
 }
 .org-src-container>pre.src-scheme:before {
- content:"scheme"
+  content:"scheme"
 }
 .org-src-container>pre.src-shell:before {
- content:"shell"
+  content:"shell"
 }
 .org-src-container>pre.src-sql:before {
- content:"sql"
+  content:"sql"
 }
 .org-src-container>pre.src-julia:before {
- content:"julia"
+  content:"julia"
 }
 .org-src-container>pre.src-ipython:before {
- content:"ipython"
+  content:"ipython"
 }
 .org-src-container>pre.src-typescript:before {
- content:"typescript"
+  content:"typescript"
 }
 .org-src-container>pre.src-clojure:before {
- content:"clojure"
+  content:"clojure"
 }
 .org-src-container>pre.src-makefile:before {
- content:"makefile"
+  content:"makefile"
 }
 .org-src-container>pre.src-R:before {
- content:"R"
+  content:"R"
 }
 .org-src-container>pre.src-ruby:before {
- content:"ruby"
+  content:"ruby"
 }
