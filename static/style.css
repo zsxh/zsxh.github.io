@@ -280,7 +280,7 @@ h1.post-title + div.post-date,
 	position: absolute;
 	background-color: #b3b3b3;
 	top: 0;
-	right: 1.5em;
+	right: 0;
 	padding: 0 .5em;
 	border-bottom-left-radius: 8px;
 	border: 0;
