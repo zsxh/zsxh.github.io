@@ -4,56 +4,55 @@
 
 * Emacs
 
-** Emacs Org-mode - a system for note-taking and project planning (2008)
-   Carsten Dominik - Org-mode 的作者，在 Google Tech Talk 上的做得演示，可以了解到Org-mode的一些想法。 \\
-   https://www.youtube.com/watch?v=oJTwQvgfgMM
+  [[https://www.youtube.com/watch?v=oJTwQvgfgMM][Emacs Org-mode - a system for note-taking and project planning (2008) - Youtube]]
+  Carsten Dominik - Org-mode 的作者，在 Google Tech Talk 上的做得演示，可以了解到 Org-mode 的一些想法
 
-** The Emacs Ipython Notebook- John Miller (Honeywell UOP)
-   John Miller - EIN(emacs ipython notebook) 现在的 maintainer， 分享 ein 作为一个 jupyter 前端 与 Emacs \\
-   结合的体验。 \\
-   https://www.youtube.com/watch?v=OB9vFu9Za8w
 
-** Conquering Kubernetes with Emacs
-   用 org-mode 做的 live coding 现场演示, 用 Emacs Lisp 写了个 kubernetes gui 客户端 \\
-   看完后，对 org-mode 文学编程方面会有更深的了解，同时对 Emacs 的强大有个直观的了解 \\
-   https://www.youtube.com/watch?v=w3krYEeqnyk
+  [[https://www.youtube.com/watch?v=OB9vFu9Za8w][The Emacs Ipython Notebook- John Miller (Honeywell UOP) - Youtube]]
+  John Miller - EIN(emacs ipython notebook) 现在的 maintainer， 分享 ein 作为一个 jupyter 前端 与 Emacs 结合的体验
 
-** It's Magit! - John Wiegley
-   Emacs 杀手级应用 Magit，你值得拥有 \\
-   https://www.youtube.com/watch?v=j-k-lkilbEs
 
-** Using Emacs Episode 67 - An Emacs vs Vim rant
-   Mike Zamansky 的 Using Emacs 系列，这不是一个emacs与vim引战的视频，而是非常客观地展示了编辑器的历史和演进过程 \\
-   这里的展示就是字面意思，把历史上的编辑器捞出来用给你们看:) \\
-   https://www.youtube.com/watch?v=0M6erlK57go
+  [[https://www.youtube.com/watch?v=w3krYEeqnyk][Conquering Kubernetes with Emacs - Youtube]]
+  用 org-mode 做的 live coding 现场演示, 用 Emacs Lisp 写了个 kubernetes gui 客户端，\\
+  看完后，对 org-mode 文学编程方面会有更深的了解，同时对 Emacs 的强大有个直观的了解
 
-* Linux Documentation Project Guides
-  https://tldp.org/guides.html
 
-** GNU/Linux Command-Line Tools Summary
-   介绍 Linux 下常用的命令行工具 \\
-   https://tldp.org/guides.html#gnu-tools
+  [[https://www.youtube.com/watch?v=j-k-lkilbEs][It's Magit! - John Wiegley - Youtube]]
+  Emacs 杀手级应用 Magit，你值得拥有。
 
-** Bash Guide for Beginners
-   介绍 Bash 脚本 \\
-   https://tldp.org/guides.html#bbg
 
-** Advanced Bash-Scripting Guide
-   Bash 工具书，需要时再查看 \\
-   https://tldp.org/guides.html#abs
+  [[https://www.youtube.com/watch?v=0M6erlK57go][Using Emacs Episode 67 - An Emacs vs Vim rant - Youtube]]
+  Mike Zamansky 的 Using Emacs 系列，这不是一个emacs与vim引战的视频，而是非常客观地展示了编辑器的历史和演进过程 \\
+  这里的展示就是字面意思，把历史上的编辑器捞出来用给你们看:)
 
-* Standord CS 253 Web Security
+
+* 命令行
+
+  [[https://tldp.org/guides.html#gnu-tools][GNU/Linux Command-Line Tools Summary]]
+  介绍 Linux 下常用的命令行工具
+
+
+  [[https://tldp.org/guides.html#bbg][Bash Guide for Beginners]]
+  介绍 Bash 脚本
+
+
+  [[https://tldp.org/guides.html#abs][Advanced Bash-Scripting Guide]]
+  Bash 工具书，需要时再查看
+
+
+* Web
+
+  [[https://web.stanford.edu/class/cs253/][Standord CS 253 Web Security]]
   斯坦福CS253网络安全，通过网络攻防，了解HTTP(s)协议、跨域、跨站脚本攻击、浏览器安全机制等等 \\
-  课上ppt、live coding、课后作业都很不错 \\
-  https://web.stanford.edu/class/cs253/
+  课上ppt、live coding、课后作业都很不错
 
-* Build XXX from scratch
-  麻雀虽小，五脏俱全
 
-** Build Your Own Text Editor
-   1000行C代码手把手写一个简单的终端编辑器，蛮有意思的，从重可以了解到一些ASCII, VT100 Escape sequence...处理方式 \\
-   https://viewsourcecode.org/snaptoken/kilo/index.html
+* Others
 
-** Let's Build a Simple Database
-   Writing a sqlite clone from scratch in C \\
-   https://cstack.github.io/db_tutorial/
+  [[https://viewsourcecode.org/snaptoken/kilo/index.html][Build Your Own Text Editor]]
+  1000行C代码手把手写一个简单的终端编辑器，蛮有意思的，从重可以了解到一些ASCII, VT100 Escape sequence...处理方式
+
+
+  [[https://cstack.github.io/db_tutorial/][Let's Build a Simple Database]]
+  Writing a sqlite clone from scratch in C
+
