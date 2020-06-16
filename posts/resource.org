@@ -47,6 +47,12 @@
   斯坦福CS253网络安全，通过网络攻防，了解HTTP(s)协议、跨域、跨站脚本攻击、浏览器安全机制等等 \\
   课上ppt、live coding、课后作业都很不错
 
+  [[https://www.youtube.com/watch?v=7kwnjoAJ2HQ][Jacob Kaplan Moss Let's build a web framework! PyCon 2017 - Youtube]]
+
+  PyCon 2017 上的一个演讲，现场基于 WSGI(Web Server Gateway Interface) 造了个 simple web framework 轮子。\\
+  可以跟着演讲把 Http Request/Response，Routing，Controller, Views, Templates，Data storage 等组件实现一遍，\\
+  造轮子的目的是为了理解轮子，中间也有一些设计上的思考，也是挺有意思的演讲
+
 * Others
 
   [[https://viewsourcecode.org/snaptoken/kilo/index.html][Build Your Own Text Editor]]
