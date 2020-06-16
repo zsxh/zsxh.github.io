@@ -36,8 +36,8 @@
 
   介绍 Bash 脚本
 
-  [[https://tldp.org/guides.html#abs][Advanced Bash-Scripting Guide
-]]
+  [[https://tldp.org/guides.html#abs][Advanced Bash-Scripting Guide]]
+ 
   Bash 工具书，需要时再查看
 
 * Web
