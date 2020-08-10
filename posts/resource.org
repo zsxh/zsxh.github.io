@@ -37,7 +37,7 @@
   介绍 Bash 脚本
 
   [[https://tldp.org/guides.html#abs][Advanced Bash-Scripting Guide]]
- 
+
   Bash 工具书，需要时再查看
 
 * Web
@@ -52,6 +52,30 @@
   PyCon 2017 上的一个演讲，现场基于 WSGI(Web Server Gateway Interface) 造了个 simple web framework 轮子。\\
   可以跟着演讲把 Http Request/Response，Routing，Controller, Views, Templates，Data storage 等组件实现一遍，\\
   造轮子的目的是为了理解轮子，中间也有一些设计上的思考，也是挺有意思的演讲
+
+  [[https://github.com/fouber/blog][fouber github blog]]
+
+  #+begin_quote
+  或许现在很多企业和团队尚未重视前端工程，或许前端工程在很多人眼里还只是“构建工具”的代名词，又或许未来前端领域的变革使得一切工程问题从根本上得到解决。不管怎样，我只是希望当下能认真的记录自己在前端工程领域的所见所想，与正在经历前端工程化改进，并被此过程困扰的同学交流心得。
+  #+end_quote
+
+  探讨各自在前端开发中遇到的工程问题，值得一看
+
+* 公开课                                                             :进行中:
+
+  [[https://pdos.csail.mit.edu/6.824/][分布式系统]]
+
+  MIT 分布式系统
+
+* ClojureScript
+
+  [[https://www.learn-clojurescript.com/][Learn ClojureScript]]
+
+  从 js 迁移到 clojurescript, 从 reactjs 库迁移到 reagent库
+
+  [[https://cljs.info/cheatsheet/][ClojureScript CheatSheet]]
+
+  clojurescript 常用方法，与 js 交互方法
 
 * Others
 

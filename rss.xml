@@ -4,14 +4,14 @@
 <title><![CDATA[Zsxh Blog]]></title>
 <description><![CDATA[Zsxh Blog]]></description>
 <link>https://zsxh.github.io/</link>
-<lastBuildDate>二, 16 6月 2020 23:57:13 +0800</lastBuildDate>
+<lastBuildDate>Mon, 10 Aug 2020 17:40:41 +0800</lastBuildDate>
 <item>
   <title><![CDATA[学习资料]]></title>
   <description><![CDATA[
-<div class="post-date"> Posted: 2020-06-03&ensp;Updated: 2020-06-16</div>
-<div id="outline-container-org1c323d8" class="outline-2">
-<h2 id="org1c323d8">Emacs</h2>
-<div class="outline-text-2" id="text-org1c323d8">
+<div class="post-date"> Posted: 2020-06-03&ensp;Updated: 2020-08-10</div>
+<div id="outline-container-orga452990" class="outline-2">
+<h2 id="orga452990">Emacs</h2>
+<div class="outline-text-2" id="text-orga452990">
 <p>
 <a href="https://www.youtube.com/watch?v=oJTwQvgfgMM">Emacs Org-mode - a system for note-taking and project planning (2008) - Youtube</a>
 </p>
@@ -56,9 +56,9 @@ Mike Zamansky 的 Using Emacs 系列，这不是一个emacs与vim引战的视频
 </div>
 </div>
 
-<div id="outline-container-orge41182c" class="outline-2">
-<h2 id="orge41182c">命令行</h2>
-<div class="outline-text-2" id="text-orge41182c">
+<div id="outline-container-orgeebacf0" class="outline-2">
+<h2 id="orgeebacf0">命令行</h2>
+<div class="outline-text-2" id="text-orgeebacf0">
 <p>
 <a href="https://tldp.org/guides.html#gnu-tools">GNU/Linux Command-Line Tools Summary</a>
 </p>
@@ -85,9 +85,9 @@ Bash 工具书，需要时再查看
 </div>
 </div>
 
-<div id="outline-container-orgfb832b1" class="outline-2">
-<h2 id="orgfb832b1">Web</h2>
-<div class="outline-text-2" id="text-orgfb832b1">
+<div id="outline-container-org039868b" class="outline-2">
+<h2 id="org039868b">Web</h2>
+<div class="outline-text-2" id="text-org039868b">
 <p>
 <a href="https://web.stanford.edu/class/cs253/">Standord CS 253 Web Security</a>
 </p>
@@ -106,12 +106,60 @@ PyCon 2017 上的一个演讲，现场基于 WSGI(Web Server Gateway Interface) 
 可以跟着演讲把 Http Request/Response，Routing，Controller, Views, Templates，Data storage 等组件实现一遍，<br>
 造轮子的目的是为了理解轮子，中间也有一些设计上的思考，也是挺有意思的演讲
 </p>
+
+<p>
+<a href="https://github.com/fouber/blog">fouber github blog</a>
+</p>
+
+<blockquote>
+<p>
+或许现在很多企业和团队尚未重视前端工程，或许前端工程在很多人眼里还只是“构建工具”的代名词，又或许未来前端领域的变革使得一切工程问题从根本上得到解决。不管怎样，我只是希望当下能认真的记录自己在前端工程领域的所见所想，与正在经历前端工程化改进，并被此过程困扰的同学交流心得。
+</p>
+</blockquote>
+
+<p>
+探讨各自在前端开发中遇到的工程问题，值得一看
+</p>
 </div>
 </div>
 
-<div id="outline-container-org620894c" class="outline-2">
-<h2 id="org620894c">Others</h2>
-<div class="outline-text-2" id="text-org620894c">
+<div id="outline-container-org1a6117a" class="outline-2">
+<h2 id="org1a6117a">公开课&#xa0;&#xa0;&#xa0;<span class="tag"><span class="___">进行中</span></span></h2>
+<div class="outline-text-2" id="text-org1a6117a">
+<p>
+<a href="https://pdos.csail.mit.edu/6.824/">分布式系统</a>
+</p>
+
+<p>
+MIT 分布式系统
+</p>
+</div>
+</div>
+
+<div id="outline-container-org62ba440" class="outline-2">
+<h2 id="org62ba440">ClojureScript</h2>
+<div class="outline-text-2" id="text-org62ba440">
+<p>
+<a href="https://www.learn-clojurescript.com/">Learn ClojureScript</a>
+</p>
+
+<p>
+从 js 迁移到 clojurescript, 从 reactjs 库迁移到 reagent库
+</p>
+
+<p>
+<a href="https://cljs.info/cheatsheet/">ClojureScript CheatSheet</a>
+</p>
+
+<p>
+clojurescript 常用方法，与 js 交互方法
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3ec912b" class="outline-2">
+<h2 id="org3ec912b">Others</h2>
+<div class="outline-text-2" id="text-org3ec912b">
 <p>
 <a href="https://viewsourcecode.org/snaptoken/kilo/index.html">Build Your Own Text Editor</a>
 </p>
@@ -132,7 +180,7 @@ Writing a sqlite clone from scratch in C
 <div class="taglist"><a href="https://zsxh.github.io/tags.html">Tags</a>: <a href="https://zsxh.github.io/tag-resource.html">resource</a> </div>]]></description>
   <category><![CDATA[resource]]></category>
   <link>https://zsxh.github.io/html/resource.html</link>
-  <pubDate>三, 03 6月 2020 17:32:00 +0800</pubDate>
+  <pubDate>Wed, 03 Jun 2020 17:32:00 +0800</pubDate>
 </item>
 <item>
   <title><![CDATA[Org Export Demo]]></title>
@@ -362,7 +410,7 @@ Albert Einstein
 <div class="taglist"><a href="https://zsxh.github.io/tags.html">Tags</a>: <a href="https://zsxh.github.io/tag-org-mode.html">org-mode</a> </div>]]></description>
   <category><![CDATA[org-mode]]></category>
   <link>https://zsxh.github.io/html/2020-01-16-org-export-demo.html</link>
-  <pubDate>四, 16 1月 2020 16:10:00 +0800</pubDate>
+  <pubDate>Thu, 16 Jan 2020 16:10:00 +0800</pubDate>
 </item>
 </channel>
 </rss>
