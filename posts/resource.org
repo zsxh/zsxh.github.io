@@ -18,6 +18,7 @@
   看完后，对 org-mode 文学编程方面会有更深的了解，同时对 Emacs 的强大有个直观的了解
 
   [[https://www.youtube.com/watch?v=dljNabciEGg][Literate Devops with Emacs - Youtube (时长28:35)]]
+  [[http://www.howardism.org/Technical/Emacs/literate-devops.html][literate-devops 补充文字]]
 
   org-mode 文学运维，全程高能，后半部分展现了 org-mode 结合 tramp 做远程服务管理
 
