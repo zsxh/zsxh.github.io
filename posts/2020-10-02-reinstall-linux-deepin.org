@@ -1,0 +1,33 @@
+#+title: 2020重装系统是什么样的一种体验
+#+date: <2020-10-02 21:56>
+#+filetags:
+
+=xps15 9570= 的 256GB 固态硬盘空间早就不够用了，所以上网买了个 1TB 的固体硬盘，正好最近 deepin 发布了 V20,
+Manjaro 社区也有人做了 deepin V20 的镜像，所以趁国庆假期把系统环境重新部署一遍。得益于 =Org-mode= 强大的文学编程
+能力，环境配置方面非常轻松，除了下载安装，自定义的配置依次把放在 github 上的 dotfile readme 的代码块执行一遍就好了。
+
+* Emacs + ibus-rime 中文输入法
+
+  从 ~pacman~ 上安装 =ibus-rime=，按照需求把 =GTK_IM_MODULE, XMODIFIERS, QT_IM_MODULE= 环境变量配好后，
+  在所有 GTK, QT 的应用上输入法正常工作，唯独在 =Emacs= 无法工作，一度我以为是 =Emacs= 环境变量没获取到的问题。
+  经过许久的搜寻，终于在这篇博客 [[https://coldnew.github.io/576cfa12/][修正 emacs 在X11下不能使用中文輸入法的問題]] 看到了相似的问题，缺了 =X11= =font-util=
+  依赖，~pacman -S xorg-font-util~ 解决。
+
+* 蓝牙
+
+  重装后，我的 Bose QC 35 一直连接不上，Manjaro Deepin GUI 也没显示错误信息，所以安装 =bluez-utils= 包，
+  尝试通过其提供的 ~bluetoothctl~ 命令行进行连接。发现匹配操作(pair)成功，但是连接操作(connect)失败，
+  通过 ~jounalctl -b0~ 看最近的系统日志，发现 =bluetoothd[5556]: a2dp-sink profile connect failed for 00:1D:43:6D:03:26: Protocol not available=
+  这样的错误，最后在 Arch Wiki [[https://wiki.archlinux.org/index.php/Bluetooth_headset#Pairing_works,_but_connecting_does_not][Paring works, but connecting does not]] 找到解决方案，~pacman -S pulseaudio-bluetooth~。
+
+  Xbox One 手柄(Controller) 则是反复出现连接/连接失败的状态，Arch Wiki [[https://wiki.archlinux.org/index.php/Gamepad#Xbox_Wireless_Controller_/_Xbox_One_Wireless_Controller][Xbox One Wireless Controller]] 中指出
+  需要禁用 ertm，需要注意的是，想要禁用 ertm 生效，需要先删除之前 Xbox One Controller 的连接配置。
+
+* 显卡
+
+  虽然现如今 Linux 英伟达的驱动已经有极大的改善，但暂时还没达到 Win 下的状态，特别是关于 Optimus 这一块。
+  像 Ubuntu 做了 Prime，Manjaro 可以安装 =video-hybrid-intel-nvidia-450xx-prime= 这样的 hybrid 驱动，
+  然后用 [[https://github.com/Askannz/optimus-manager][optimus-manager]] 进行手动切换。安装 =optimus-manager= 重启后发现触摸板不工作了，
+  用 ~jounalctl -b0~ 查了一下系统日志发现果然是 acpi 错误导致后续的触摸板模块没加载上，需要修改 =GRUB_CMDLINE_LINUX_DEFAULT=，
+  我的是 xps15 9570，上网查了一下资料，给 =/etc/default/grub= 文件的 =GRUB_CMDLINE_LINUX_DEFAULT= 加上
+  =acpi_osi​=! acpi_osi​='Windows 2009'= 参数。
