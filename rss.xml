@@ -4,19 +4,25 @@
 <title><![CDATA[Zsxh Blog]]></title>
 <description><![CDATA[Zsxh Blog]]></description>
 <link>https://zsxh.github.io/</link>
-<lastBuildDate>Fri, 02 Oct 2020 23:01:12 +0800</lastBuildDate>
+<lastBuildDate>Fri, 02 Oct 2020 23:04:35 +0800</lastBuildDate>
 <item>
   <title><![CDATA[2020重装系统是什么样的一种体验]]></title>
   <description><![CDATA[
-<div class="post-date"> Posted: 2020-10-02</div><p>
+<div class="post-date"> Posted: 2020-10-02</div>
+<div id="outline-container-org07028e8" class="outline-2">
+<h2 id="org07028e8">Manjaro Deepin</h2>
+<div class="outline-text-2" id="text-org07028e8">
+<p>
 <code>xps15 9570</code> 的 256GB 固态硬盘空间早就不够用了，所以上网买了个 1TB 的固体硬盘，正好最近 deepin 发布了 V20,
 Manjaro 社区也有人做了 deepin V20 的镜像，所以趁国庆假期把系统环境重新部署一遍。得益于 <code>Org-mode</code> 强大的文学编程
 能力，环境配置方面非常轻松，除了下载安装，自定义的配置依次把放在 github 上的 dotfile readme 的代码块执行一遍就好了。
 </p>
+</div>
+</div>
 
-<div id="outline-container-org7f7542c" class="outline-2">
-<h2 id="org7f7542c">Emacs + ibus-rime 中文输入法</h2>
-<div class="outline-text-2" id="text-org7f7542c">
+<div id="outline-container-org5396f75" class="outline-2">
+<h2 id="org5396f75">Emacs + ibus-rime 中文输入法</h2>
+<div class="outline-text-2" id="text-org5396f75">
 <p>
 从 <code>pacman</code> 上安装 <code>ibus-rime</code>，按照需求把 <code>GTK_IM_MODULE, XMODIFIERS, QT_IM_MODULE</code> 环境变量配好后，
 在所有 GTK, QT 的应用上输入法正常工作，唯独在 <code>Emacs</code> 无法工作，一度我以为是 <code>Emacs</code> 环境变量没获取到的问题。
@@ -26,9 +32,9 @@ Manjaro 社区也有人做了 deepin V20 的镜像，所以趁国庆假期把系
 </div>
 </div>
 
-<div id="outline-container-org6b99978" class="outline-2">
-<h2 id="org6b99978">蓝牙</h2>
-<div class="outline-text-2" id="text-org6b99978">
+<div id="outline-container-org36cb7c4" class="outline-2">
+<h2 id="org36cb7c4">蓝牙</h2>
+<div class="outline-text-2" id="text-org36cb7c4">
 <p>
 重装后，我的 Bose QC 35 一直连接不上，Manjaro Deepin GUI 也没显示错误信息，所以安装 <code>bluez-utils</code> 包，
 尝试通过其提供的 <code>bluetoothctl</code> 命令行进行连接。发现匹配操作(pair)成功，但是连接操作(connect)失败，
@@ -43,9 +49,9 @@ Xbox One 手柄(Controller) 则是反复出现连接/连接失败的状态，Arc
 </div>
 </div>
 
-<div id="outline-container-orgf19d5fc" class="outline-2">
-<h2 id="orgf19d5fc">显卡</h2>
-<div class="outline-text-2" id="text-orgf19d5fc">
+<div id="outline-container-org723fc63" class="outline-2">
+<h2 id="org723fc63">显卡</h2>
+<div class="outline-text-2" id="text-org723fc63">
 <p>
 虽然现如今 Linux 英伟达的驱动已经有极大的改善，但暂时还没达到 Win 下的状态，特别是关于 Optimus 这一块。
 像 Ubuntu 做了 Prime，Manjaro 可以安装 <code>video-hybrid-intel-nvidia-450xx-prime</code> 这样的 hybrid 驱动，

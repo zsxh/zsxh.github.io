@@ -2,9 +2,11 @@
 #+date: <2020-10-02 21:56>
 #+filetags:
 
-=xps15 9570= 的 256GB 固态硬盘空间早就不够用了，所以上网买了个 1TB 的固体硬盘，正好最近 deepin 发布了 V20,
-Manjaro 社区也有人做了 deepin V20 的镜像，所以趁国庆假期把系统环境重新部署一遍。得益于 =Org-mode= 强大的文学编程
-能力，环境配置方面非常轻松，除了下载安装，自定义的配置依次把放在 github 上的 dotfile readme 的代码块执行一遍就好了。
+* Manjaro Deepin
+
+  =xps15 9570= 的 256GB 固态硬盘空间早就不够用了，所以上网买了个 1TB 的固体硬盘，正好最近 deepin 发布了 V20,
+  Manjaro 社区也有人做了 deepin V20 的镜像，所以趁国庆假期把系统环境重新部署一遍。得益于 =Org-mode= 强大的文学编程
+  能力，环境配置方面非常轻松，除了下载安装，自定义的配置依次把放在 github 上的 dotfile readme 的代码块执行一遍就好了。
 
 * Emacs + ibus-rime 中文输入法
 
