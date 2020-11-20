@@ -1,6 +1,6 @@
-#+title: 2020重装系统是什么样的一种体验
+#+title: Manjaro Deepin V20 环境配置若干问题
 #+date: <2020-10-02 21:56>
-#+filetags:
+#+filetags: :linux:
 
 * Manjaro Deepin
 
