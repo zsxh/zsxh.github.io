@@ -23,7 +23,7 @@ ob-jupyter 是 [[https://github.com/nnicandro/emacs-jupyter][emacs-jupyter]] 的
 
   #+begin_example
     #+begin_src emacs-lisp
-      (conda-env-activate "math") ; 激活 python 虚拟环境
+      (conda-env-activate "PYTHON-VIRTUAL-ENV") ; 激活 python 虚拟环境
       (org-babel-jupyter-aliases-from-kernelspecs t) ; 刷新 kernel SPECS，创建 org-bable-execute:jupyter-LANG 方法
     #+end_src
   #+end_example

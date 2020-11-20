@@ -4,7 +4,7 @@
 <title><![CDATA[zsxh blog]]></title>
 <description><![CDATA[zsxh blog]]></description>
 <link>https://zsxh.github.io/</link>
-<lastBuildDate>Sat, 21 Nov 2020 00:43:20 +0800</lastBuildDate>
+<lastBuildDate>Sat, 21 Nov 2020 00:47:10 +0800</lastBuildDate>
 <item>
   <title><![CDATA[ob-jupyter Python Julia 环境变量设置]]></title>
   <description><![CDATA[
@@ -13,10 +13,10 @@ ob-jupyter 是 <a href="https://github.com/nnicandro/emacs-jupyter">emacs-jupyte
 非常灵活方便。两者结合使用时，这里记录一下我踩过的坑。
 </p>
 
-<div id="outline-container-org2b76114" class="outline-2">
-<h2 id="org2b76114">C-c C-c 执行 Org Babel 代码块时找不到 jupyter?</h2>
-<div class="outline-text-2" id="text-org2b76114">
-<pre class="example" id="org946044b">
+<div id="outline-container-orga7528f1" class="outline-2">
+<h2 id="orga7528f1">C-c C-c 执行 Org Babel 代码块时找不到 jupyter?</h2>
+<div class="outline-text-2" id="text-orga7528f1">
+<pre class="example" id="org4710952">
 Error retrieving kernelspecs: (error "Can’t obtain kernelspecs from jupyter shell command")
 ...
 org-babel-execute-src-block: No org-babel-execute function for jupyter-julia!
@@ -36,9 +36,9 @@ jupyter 相关库安装在 conda 创建的虚拟环境中。
 这里我需要先执行一下以下代码
 </p>
 
-<pre class="example" id="org91fadca">
+<pre class="example" id="org21e5c5d">
 #+begin_src emacs-lisp
-  (conda-env-activate "math") ; 激活 python 虚拟环境
+  (conda-env-activate "PYTHON-VIRTUAL-ENV") ; 激活 python 虚拟环境
   (org-babel-jupyter-aliases-from-kernelspecs t) ; 刷新 kernel SPECS，创建 org-bable-execute:jupyter-LANG 方法
 #+end_src
 </pre>
@@ -50,9 +50,9 @@ jupyter 相关库安装在 conda 创建的虚拟环境中。
 </div>
 </div>
 
-<div id="outline-container-org068f6cb" class="outline-2">
-<h2 id="org068f6cb">Jupyter 在 python 虚拟环境中，project local Ijulia 如何安装使之生效?</h2>
-<div class="outline-text-2" id="text-org068f6cb">
+<div id="outline-container-orgff20177" class="outline-2">
+<h2 id="orgff20177">Jupyter 在 python 虚拟环境中，project local Ijulia 如何安装使之生效?</h2>
+<div class="outline-text-2" id="text-orgff20177">
 <p>
 在终端执行 <code>julia</code> 进入 julia repl 环境，安装 Ijulia
 </p>
@@ -72,7 +72,7 @@ Pkg.build("IJulia")
 在终端启动 <code>jupyter notebook</code> 创建 julia 内核的 notebook，抛出错误信息：
 </p>
 
-<pre class="example" id="org961ac6f">
+<pre class="example" id="org0abb1d3">
 Stacktrace:
 [1] require(::Module, ::Symbol) at ./loading.jl:893
 [2] include(::Function, ::Module, ::String) at ./Base.jl:380
@@ -98,7 +98,7 @@ ERROR: LoadError: ArgumentError: Package IJulia not found in current path:
 如果是在 Org-mode 中，则可以执行以下 org babel 代码块：
 </p>
 
-<pre class="example" id="org0118648">
+<pre class="example" id="org0998957">
 #+begin_src emacs-lisp
   (setenv "JULIA_LOAD_PATH" "YOUR-IJULIA-PROJECT-PATH")
 #+end_src
@@ -106,9 +106,9 @@ ERROR: LoadError: ArgumentError: Package IJulia not found in current path:
 </div>
 </div>
 
-<div id="outline-container-org5cef5b1" class="outline-2">
-<h2 id="org5cef5b1">参考</h2>
-<div class="outline-text-2" id="text-org5cef5b1">
+<div id="outline-container-org3c8fd5f" class="outline-2">
+<h2 id="org3c8fd5f">参考</h2>
+<div class="outline-text-2" id="text-org3c8fd5f">
 <ul class="org-ul">
 <li><a href="https://github.com/JuliaLang/julia/issues/29513">https://github.com/JuliaLang/julia/issues/29513</a></li>
 </ul>
