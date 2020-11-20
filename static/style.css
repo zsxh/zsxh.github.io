@@ -154,7 +154,7 @@ pre, .outline-text-2, .outline-text-3, outline-text-4{
   }
 }
 
-@media only screen and (max-width: 750px) /* Large screens */
+@media only screen and (max-width: 750px) /* Small screens */
 {
   .index-content
   {
@@ -262,7 +262,7 @@ table {
 
 h1.post-title,
 h1.post-title + div.post-date,
-.taglist {
+#content > .taglist {
   text-align: center;
 }
 
