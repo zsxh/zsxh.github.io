@@ -31,9 +31,9 @@ ob-jupyter 是 [[https://github.com/nnicandro/emacs-jupyter][emacs-jupyter]] 的
   ~conda-env-activate~ 用来使 python 虚拟环境生效，需要安装 [[https://github.com/necaris/conda.el][conda.el]] 包，当然这里你也可以用别的 elisp 包代替，比如 [[https://github.com/proofit404/pyenv-mode][pyenv-mode]], [[http://github.com/jorgenschaefer/pyvenv][pyvenv]]。
   ~org-babel-jupyter-aliases-from-kernelspecs~ 是 =ob-jupyter= 用来创建 org-bable-execute:jupyter-LANG 方法的。
 
-* Jupyter 在 python 虚拟环境中，project local Ijulia 如何安装使之生效?
+* Jupyter 在 python 虚拟环境中，project local IJulia 如何安装使之生效?
 
-  在终端执行 ~julia~ 进入 julia repl 环境，安装 Ijulia
+  在终端执行 ~julia~ 进入 julia repl 环境，安装 IJulia
 
   #+begin_src julia
         using Pkg
