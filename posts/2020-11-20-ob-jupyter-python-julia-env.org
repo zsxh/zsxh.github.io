@@ -1,0 +1,78 @@
+#+title: ob-jupyter Python Julia 环境变量设置
+#+date: <2020-11-20 23:43>
+#+filetags: org-mode emacs python julia jupyter
+
+ob-jupyter 是 [[https://github.com/nnicandro/emacs-jupyter][emacs-jupyter]] 的一个 Org-mode 插件，jupyter 作为后端，org-mode 作为前端将计算结果归档到 org 文件里，
+非常灵活方便。两者结合使用时，这里记录一下我踩过的坑。
+
+* C-c C-c 执行 Org Babel 代码块时找不到 jupyter?
+
+  #+begin_quote
+  Error retrieving kernelspecs: (error "Can’t obtain kernelspecs from jupyter shell command")
+  ...
+  org-babel-execute-src-block: No org-babel-execute function for jupyter-julia!
+  #+end_quote
+
+  ob-jupyter 在初始化时会在 PATH 中寻找 jupyter 命令去执行，同时根据 kernelspecs 返回内核 LANG 信息，
+  创建 org-bable-execute:jupyter-LANG 方法。
+
+  我在本地使用了 pyenv + miniconda 来隔离 python 运行环境，pyenv global version 设置的是 miniconda，
+  jupyter 相关库安装在 conda 创建的虚拟环境中。
+
+  这里我需要先执行一下以下代码
+
+  #+begin_example
+    #+begin_src emacs-lisp
+      (conda-env-activate "math") ; 激活 python 虚拟环境
+      (org-babel-jupyter-aliases-from-kernelspecs t) ; 刷新 kernel SPECS，创建 org-bable-execute:jupyter-LANG 方法
+    #+end_src
+  #+end_example
+
+  ~conda-env-activate~ 用来使 python 虚拟环境生效，需要安装 [[https://github.com/necaris/conda.el][conda.el]] 包，当然这里你也可以用别的 elisp 包代替，比如 [[https://github.com/proofit404/pyenv-mode][pyenv-mode]], [[http://github.com/jorgenschaefer/pyvenv][pyvenv]]。
+  ~org-babel-jupyter-aliases-from-kernelspecs~ 是 =ob-jupyter= 用来创建 org-bable-execute:jupyter-LANG 方法的。
+
+* Jupyter 在 python 虚拟环境中，project local Ijulia 如何安装使之生效?
+
+  在终端执行 ~julia~ 进入 julia repl 环境，安装 Ijulia
+
+  #+begin_src julia
+        using Pkg
+        Pkg.activate("YOUR-IJULIA-PROJECT-PATH") # IJulia 安装在指定项目环境中
+        # https://julialang.github.io/IJulia.jl/stable/manual/installation/
+        ENV["JUPYTER"]="jupyter命令的路径" # 如果jupyter安装在虚拟环境中，需要给julia指定一个JUPYTER路径的环境变量
+        Pkg.add(["IJulia"])
+        using IJulia
+        Pkg.build("IJulia")
+  #+end_src
+
+  在终端启动 ~jupyter notebook~ 创建 julia 内核的 notebook，抛出错误信息：
+
+  #+begin_quote
+    Stacktrace:
+    [1] require(::Module, ::Symbol) at ./loading.jl:893
+    [2] include(::Function, ::Module, ::String) at ./Base.jl:380
+    [3] include(::Module, ::String) at ./Base.jl:368
+    [4] exec_options(::Base.JLOptions) at ./client.jl:296
+    [5] _start() at ./client.jl:506
+    in expression starting at /home/zsxh/.julia/packages/IJulia/a1SNk/src/kernel.jl:1
+    [I 12:13:43.229 NotebookApp] KernelRestarter: restarting kernel (3/5), new random ports
+    ERROR: LoadError: ArgumentError: Package IJulia not found in current path:
+    - Run `import Pkg; Pkg.add("IJulia")` to install the IJulia package.
+  #+end_quote
+
+  运行 jupyter 前，需要声明 =JULIA_LOAD_PATH= 环境变量，不然就会有以上错误信息。
+
+  #+begin_src shell
+    export JULIA_LOAD_PATH="YOUR-IJULIA-PROJECT-PATH"
+  #+end_src
+
+  如果是在 Org-mode 中，则可以执行以下 org babel 代码块：
+
+  #+begin_example
+    #+begin_src emacs-lisp
+      (setenv "JULIA_LOAD_PATH" "YOUR-IJULIA-PROJECT-PATH")
+    #+end_src
+  #+end_example
+
+* 参考
+  - https://github.com/JuliaLang/julia/issues/29513

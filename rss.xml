@@ -4,7 +4,131 @@
 <title><![CDATA[zsxh blog]]></title>
 <description><![CDATA[zsxh blog]]></description>
 <link>https://zsxh.github.io/</link>
-<lastBuildDate>Fri, 20 Nov 2020 17:57:19 +0800</lastBuildDate>
+<lastBuildDate>Sat, 21 Nov 2020 00:37:16 +0800</lastBuildDate>
+<item>
+  <title><![CDATA[ob-jupyter Python Julia 环境变量设置]]></title>
+  <description><![CDATA[
+<div class="post-date"> Posted: 2020-11-20&ensp;Updated: 2020-11-21</div><p>
+ob-jupyter 是 <a href="https://github.com/nnicandro/emacs-jupyter">emacs-jupyter</a> 的一个 Org-mode 插件，jupyter 作为后端，org-mode 作为前端将计算结果归档到 org 文件里，
+非常灵活方便。两者结合使用时，这里记录一下我踩过的坑。
+</p>
+
+<div id="outline-container-org001afda" class="outline-2">
+<h2 id="org001afda">C-c C-c 执行 Org Babel 代码块时找不到 jupyter?</h2>
+<div class="outline-text-2" id="text-org001afda">
+<blockquote>
+<p>
+Error retrieving kernelspecs: (error "Can’t obtain kernelspecs from jupyter shell command")
+&#x2026;
+org-babel-execute-src-block: No org-babel-execute function for jupyter-julia!
+</p>
+</blockquote>
+
+<p>
+ob-jupyter 在初始化时会在 PATH 中寻找 jupyter 命令去执行，同时根据 kernelspecs 返回内核 LANG 信息，
+创建 org-bable-execute:jupyter-LANG 方法。
+</p>
+
+<p>
+我在本地使用了 pyenv + miniconda 来隔离 python 运行环境，pyenv global version 设置的是 miniconda，
+jupyter 相关库安装在 conda 创建的虚拟环境中。
+</p>
+
+<p>
+这里我需要先执行一下以下代码
+</p>
+
+<pre class="example" id="orge55b4d6">
+#+begin_src emacs-lisp
+  (conda-env-activate "math") ; 激活 python 虚拟环境
+  (org-babel-jupyter-aliases-from-kernelspecs t) ; 刷新 kernel SPECS，创建 org-bable-execute:jupyter-LANG 方法
+#+end_src
+</pre>
+
+<p>
+<code>conda-env-activate</code> 用来使 python 虚拟环境生效，需要安装 <a href="https://github.com/necaris/conda.el">conda.el</a> 包，当然这里你也可以用别的 elisp 包代替，比如 <a href="https://github.com/proofit404/pyenv-mode">pyenv-mode</a>, <a href="http://github.com/jorgenschaefer/pyvenv">pyvenv</a>。
+<code>org-babel-jupyter-aliases-from-kernelspecs</code> 是 <code>ob-jupyter</code> 用来创建 org-bable-execute:jupyter-LANG 方法的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb226b39" class="outline-2">
+<h2 id="orgb226b39">Jupyter 在 python 虚拟环境中，project local Ijulia 如何安装使之生效?</h2>
+<div class="outline-text-2" id="text-orgb226b39">
+<p>
+在终端执行 <code>julia</code> 进入 julia repl 环境，安装 Ijulia
+</p>
+
+<div class="org-src-container">
+<pre class="src src-julia">using Pkg
+Pkg.activate("YOUR-IJULIA-PROJECT-PATH") # IJulia 安装在指定项目环境中
+# https://julialang.github.io/IJulia.jl/stable/manual/installation/
+ENV["JUPYTER"]="jupyter命令的路径" # 如果jupyter安装在虚拟环境中，需要给julia指定一个JUPYTER路径的环境变量
+Pkg.add(["IJulia"])
+using IJulia
+Pkg.build("IJulia")
+</pre>
+</div>
+
+<p>
+在终端启动 <code>jupyter notebook</code> 创建 julia 内核的 notebook，抛出错误信息：
+</p>
+
+<blockquote>
+<p>
+Stacktrace:
+[1] require(::Module, ::Symbol) at ./loading.jl:893
+[2] include(::Function, ::Module, ::String) at ./Base.jl:380
+[3] include(::Module, ::String) at ./Base.jl:368
+[4] exec<sub>options</sub>(::Base.JLOptions) at ./client.jl:296
+[5] _start() at ./client.jl:506
+in expression starting at <i>home/zsxh</i>.julia/packages/IJulia/a1SNk/src/kernel.jl:1
+[I 12:13:43.229 NotebookApp] KernelRestarter: restarting kernel (3/5), new random ports
+ERROR: LoadError: ArgumentError: Package IJulia not found in current path:
+</p>
+<ul class="org-ul">
+<li>Run `import Pkg; Pkg.add("IJulia")` to install the IJulia package.</li>
+</ul>
+</blockquote>
+
+<p>
+运行 jupyter 前，需要声明 <code>JULIA_LOAD_PATH</code> 环境变量，不然就会有以上错误信息。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">export JULIA_LOAD_PATH="YOUR-IJULIA-PROJECT-PATH"
+</pre>
+</div>
+
+<p>
+如果是在 Org-mode 中，则可以执行以下 org babel 代码块：
+</p>
+
+<pre class="example" id="org6b58800">
+#+begin_src emacs-lisp
+  (setenv "JULIA_LOAD_PATH" "YOUR-IJULIA-PROJECT-PATH")
+#+end_src
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org1dbcfa5" class="outline-2">
+<h2 id="org1dbcfa5">参考</h2>
+<div class="outline-text-2" id="text-org1dbcfa5">
+<ul class="org-ul">
+<li><a href="https://github.com/JuliaLang/julia/issues/29513">https://github.com/JuliaLang/julia/issues/29513</a></li>
+</ul>
+</div>
+</div>
+<div class="taglist"><a href="https://zsxh.github.io/tags.html">Tags</a>: <a href="https://zsxh.github.io/tag-org-mode.html">org-mode</a> <a href="https://zsxh.github.io/tag-emacs.html">emacs</a> <a href="https://zsxh.github.io/tag-python.html">python</a> <a href="https://zsxh.github.io/tag-julia.html">julia</a> <a href="https://zsxh.github.io/tag-jupyter.html">jupyter</a> </div>]]></description>
+  <category><![CDATA[org-mode]]></category>
+  <category><![CDATA[emacs]]></category>
+  <category><![CDATA[python]]></category>
+  <category><![CDATA[julia]]></category>
+  <category><![CDATA[jupyter]]></category>
+  <link>https://zsxh.github.io/html/2020-11-20-ob-jupyter-python-julia-env.html</link>
+  <pubDate>Fri, 20 Nov 2020 23:43:00 +0800</pubDate>
+</item>
 <item>
   <title><![CDATA[Manjaro Deepin V20 环境配置若干问题]]></title>
   <description><![CDATA[
