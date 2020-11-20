@@ -130,10 +130,6 @@ pre, .outline-text-2, .outline-text-3, outline-text-4{
   #postamble,
   .title,
   .index-content
-  /* h2.post-title, */
-  /* h2.post-title + div.post-date, */
-  /* div.post-date + p, */
-  /* div.post-date + p + a, */
   {
     padding: 0vh 20vw;
   }
@@ -144,15 +140,27 @@ pre, .outline-text-2, .outline-text-3, outline-text-4{
   .outline-2,
   #postamble,
   .title,
-  /* h2.post-title, */
-  /* h2.post-title + div.post-date, */
-  /* div.post-date + p */
   .index-content
   {
     padding: 2vh 5vw;
   }
 }
 
+@media only screen and (min-width: 750px) /* Large screens */
+{
+  .index-content
+  {
+    padding: 3vh 20vw;
+  }
+}
+
+@media only screen and (max-width: 750px) /* Large screens */
+{
+  .index-content
+  {
+    padding: 3vh 5vw;
+  }
+}
 
 /* Code blocks */
 .org-keyword{
