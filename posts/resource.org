@@ -72,6 +72,16 @@
 
   MIT 分布式系统
 
+  [[https://reberhardt.com/cs110l/spring-2020/][CS 110L: Safety in Systems Programming - Spring-2020]]
+
+  斯坦福 CS110L，Topics: 系统、浏览器、网络、Rust 解决了 C/C++ 哪些问题和 Rust 部分讲解。讲解的很好、live coding 做到也很好。
+
+  [[http://open.163.com/newview/movie/courseintro?newurl=%2Fspecial%2Fcuvocw%2Fshuxuedaguan.html][北京航空航天大学公开课:数学大观]]
+
+  本课程名称“数学大观”取自范仲淹的名篇《岳阳楼记》中的“此则岳阳楼之大观也”。大观，就不是传授数学知识和计算的具体细节，而是一览数学的总体面貌、总体思路。\\
+  老师讲得很好，充分展现了数学的威力和魅力。\\
+  14节课，30分钟一节，休息放松时看下，每次都有收获。
+
 * ClojureScript
 
   [[https://www.learn-clojurescript.com/][Learn ClojureScript]]
