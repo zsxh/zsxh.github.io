@@ -7,11 +7,11 @@ ob-jupyter 是 [[https://github.com/nnicandro/emacs-jupyter][emacs-jupyter]] 的
 
 * C-c C-c 执行 Org Babel 代码块时找不到 jupyter?
 
-  #+begin_quote
+  #+begin_example
   Error retrieving kernelspecs: (error "Can’t obtain kernelspecs from jupyter shell command")
   ...
   org-babel-execute-src-block: No org-babel-execute function for jupyter-julia!
-  #+end_quote
+  #+end_example
 
   ob-jupyter 在初始化时会在 PATH 中寻找 jupyter 命令去执行，同时根据 kernelspecs 返回内核 LANG 信息，
   创建 org-bable-execute:jupyter-LANG 方法。
@@ -47,7 +47,7 @@ ob-jupyter 是 [[https://github.com/nnicandro/emacs-jupyter][emacs-jupyter]] 的
 
   在终端启动 ~jupyter notebook~ 创建 julia 内核的 notebook，抛出错误信息：
 
-  #+begin_quote
+  #+begin_example
     Stacktrace:
     [1] require(::Module, ::Symbol) at ./loading.jl:893
     [2] include(::Function, ::Module, ::String) at ./Base.jl:380
@@ -58,7 +58,7 @@ ob-jupyter 是 [[https://github.com/nnicandro/emacs-jupyter][emacs-jupyter]] 的
     [I 12:13:43.229 NotebookApp] KernelRestarter: restarting kernel (3/5), new random ports
     ERROR: LoadError: ArgumentError: Package IJulia not found in current path:
     - Run `import Pkg; Pkg.add("IJulia")` to install the IJulia package.
-  #+end_quote
+  #+end_example
 
   运行 jupyter 前，需要声明 =JULIA_LOAD_PATH= 环境变量，不然就会有以上错误信息。
 

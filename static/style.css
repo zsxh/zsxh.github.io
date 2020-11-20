@@ -129,6 +129,7 @@ pre, .outline-text-2, .outline-text-3, outline-text-4{
   .outline-2,
   #postamble,
   .title,
+  #content > p,
   #archive-content > .post-title
   {
     padding: 0vh 20vw;
@@ -140,6 +141,7 @@ pre, .outline-text-2, .outline-text-3, outline-text-4{
   .outline-2,
   #postamble,
   .title,
+  #content > p,
   #archive-content > .post-title
   {
     padding: 2vh 5vw;
