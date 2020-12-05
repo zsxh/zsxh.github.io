@@ -5,7 +5,7 @@
 <link rel="alternate"
       type="application/rss+xml"
       href="https://zsxh.github.io/rss.xml"
-      title="RSS feed for https://zsxh.github.io/"/>
+      title="RSS feed for https://zsxh.github.io/">
 <title>Manjaro Deepin V20 环境配置若干问题</title>
 <meta name="author" content="ZSXH">
 <meta name="referrer" content="no-referrer">
@@ -17,8 +17,7 @@
 <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
 <meta name="viewport" content="initial-scale=1,width=device-width,minimum-scale=1"></head>
 <body>
-<div id="preamble" class="status">
-<div class="header">
+<div id="preamble" class="status"><div class="header">
 <a href="/index.html">Home</a> |
 <a href="/archive.html">Archive</a> |
 <a href="/html/resource.html">Resources</a> |
@@ -28,10 +27,10 @@
 </div></div>
 <div id="content">
 <h1 class="post-title"><a href="https://zsxh.github.io/html/2020-10-02-reinstall-linux-deepin.html">Manjaro Deepin V20 环境配置若干问题</a></h1>
-<div class="post-date"> Posted: 2020-10-02&ensp;Updated: 2020-11-20</div>
-<div id="outline-container-org2c41b34" class="outline-2">
-<h2 id="org2c41b34">Manjaro Deepin</h2>
-<div class="outline-text-2" id="text-org2c41b34">
+<div class="post-date"> Posted: 2020-10-02&ensp;Updated: 2020-12-05</div>
+<div id="outline-container-org806cfa0" class="outline-2">
+<h2 id="org806cfa0">Manjaro Deepin</h2>
+<div class="outline-text-2" id="text-org806cfa0">
 <p>
 <code>xps15 9570</code> 的 256GB 固态硬盘空间早就不够用了，所以上网买了个 1TB 的固体硬盘，正好最近 deepin 发布了 V20,
 Manjaro 社区也有人做了 deepin V20 的镜像，所以趁国庆假期把系统环境重新部署一遍。得益于 <code>Org-mode</code> 强大的文学编程
@@ -40,9 +39,9 @@ Manjaro 社区也有人做了 deepin V20 的镜像，所以趁国庆假期把系
 </div>
 </div>
 
-<div id="outline-container-org0a9a4a7" class="outline-2">
-<h2 id="org0a9a4a7">Emacs + ibus-rime 中文输入法</h2>
-<div class="outline-text-2" id="text-org0a9a4a7">
+<div id="outline-container-org538cd34" class="outline-2">
+<h2 id="org538cd34">Emacs + ibus-rime 中文输入法</h2>
+<div class="outline-text-2" id="text-org538cd34">
 <p>
 从 <code>pacman</code> 上安装 <code>ibus-rime</code>，按照需求把 <code>GTK_IM_MODULE, XMODIFIERS, QT_IM_MODULE</code> 环境变量配好后，
 在所有 GTK, QT 的应用上输入法正常工作，唯独在 <code>Emacs</code> 无法工作，一度我以为是 <code>Emacs</code> 环境变量没获取到的问题。
@@ -52,9 +51,9 @@ Manjaro 社区也有人做了 deepin V20 的镜像，所以趁国庆假期把系
 </div>
 </div>
 
-<div id="outline-container-org615d3e0" class="outline-2">
-<h2 id="org615d3e0">蓝牙</h2>
-<div class="outline-text-2" id="text-org615d3e0">
+<div id="outline-container-orga8f0dba" class="outline-2">
+<h2 id="orga8f0dba">蓝牙</h2>
+<div class="outline-text-2" id="text-orga8f0dba">
 <p>
 重装后，我的 Bose QC 35 一直连接不上，Manjaro Deepin GUI 也没显示错误信息，所以安装 <code>bluez-utils</code> 包，
 尝试通过其提供的 <code>bluetoothctl</code> 命令行进行连接。发现匹配操作(pair)成功，但是连接操作(connect)失败，
@@ -69,12 +68,12 @@ Xbox One 手柄(Controller) 则是反复出现连接/连接失败的状态，Arc
 </div>
 </div>
 
-<div id="outline-container-org1b0ec15" class="outline-2">
-<h2 id="org1b0ec15">显卡</h2>
-<div class="outline-text-2" id="text-org1b0ec15">
+<div id="outline-container-org7fba491" class="outline-2">
+<h2 id="org7fba491">显卡</h2>
+<div class="outline-text-2" id="text-org7fba491">
 <p>
 虽然现如今 Linux 英伟达的驱动已经有极大的改善，但暂时还没达到 Win 下的状态，特别是关于 Optimus 这一块。
-像 Ubuntu 做了 Prime，Manjaro 可以安装 <code>video-hybrid-intel-nvidia-450xx-prime</code> 这样的 hybrid 驱动，
+像 Ubuntu 做了 Prime，Manjaro 可以安装 <code>nvidia-{NUM}-utils, linux{num}-nvidia-{NUM}xx</code>，
 然后用 <a href="https://github.com/Askannz/optimus-manager">optimus-manager</a> 进行手动切换。安装 <code>optimus-manager</code> 重启后发现触摸板不工作了，
 用 <code>jounalctl -b0</code> 查了一下系统日志发现果然是 acpi 错误导致后续的触摸板模块没加载上，需要修改 <code>GRUB_CMDLINE_LINUX_DEFAULT</code>，
 我的是 xps15 9570，上网查了一下资料，给 <code>/etc/default/grub</code> 文件的 <code>GRUB_CMDLINE_LINUX_DEFAULT</code> 加上

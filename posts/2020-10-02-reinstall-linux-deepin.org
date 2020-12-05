@@ -28,7 +28,7 @@
 * 显卡
 
   虽然现如今 Linux 英伟达的驱动已经有极大的改善，但暂时还没达到 Win 下的状态，特别是关于 Optimus 这一块。
-  像 Ubuntu 做了 Prime，Manjaro 可以安装 =video-hybrid-intel-nvidia-450xx-prime= 这样的 hybrid 驱动，
+  像 Ubuntu 做了 Prime，Manjaro 可以安装 =nvidia-{NUM}-utils, linux{num}-nvidia-{NUM}xx=，
   然后用 [[https://github.com/Askannz/optimus-manager][optimus-manager]] 进行手动切换。安装 =optimus-manager= 重启后发现触摸板不工作了，
   用 ~jounalctl -b0~ 查了一下系统日志发现果然是 acpi 错误导致后续的触摸板模块没加载上，需要修改 =GRUB_CMDLINE_LINUX_DEFAULT=，
   我的是 xps15 9570，上网查了一下资料，给 =/etc/default/grub= 文件的 =GRUB_CMDLINE_LINUX_DEFAULT= 加上
