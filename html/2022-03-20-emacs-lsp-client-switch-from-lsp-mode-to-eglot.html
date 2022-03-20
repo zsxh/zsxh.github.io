@@ -28,9 +28,9 @@
 <div id="content">
 <h1 class="post-title"><a href="https://zsxh.github.io/html/2022-03-20-emacs-lsp-client-switch-from-lsp-mode-to-eglot.html">Emacs LSP 客户端，从 lsp-mode 迁移到 eglot</a></h1>
 <div class="post-date"> Posted: 2022-03-20</div>
-<div id="outline-container-orgd211f6b" class="outline-2">
-<h2 id="orgd211f6b">TL;DR</h2>
-<div class="outline-text-2" id="text-orgd211f6b">
+<div id="outline-container-orgc7619b3" class="outline-2">
+<h2 id="orgc7619b3">TL;DR</h2>
+<div class="outline-text-2" id="text-orgc7619b3">
 <p>
 前段时间 Eclipse JDTLS 在社区的呼吁下终于提供了一个简易的启动脚本，借此机会，在本周末我尝试下从 lsp-mode
 迁移到 eglot，顺便记录一下遇到的一些问题和感想。
@@ -38,34 +38,34 @@
 </div>
 </div>
 
-<div id="outline-container-orga4a1828" class="outline-2">
-<h2 id="orga4a1828">迁移的动机</h2>
-<div class="outline-text-2" id="text-orga4a1828">
+<div id="outline-container-org1fa160c" class="outline-2">
+<h2 id="org1fa160c">迁移的动机</h2>
+<div class="outline-text-2" id="text-org1fa160c">
 <p>
-lsp-mode 和 dap-mode 基本上已经在 Emacs 上还原了大部分 VSCode Lanuage Server 上面的功能，
+lsp-mode 和 dap-mode 基本上已经在 Emacs 上还原了大部分 VSCode Language Server 上面的功能，
 但让我不太满意的一点是，lsp-mode 配置比较复杂，需要在我看来是不重要的功能被默认开启，使用时需要我把很多不用的功能
 手动关掉，而且性能上也存在问题。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org899b40d" class="outline-2">
-<h2 id="org899b40d">Eglot</h2>
-<div class="outline-text-2" id="text-org899b40d">
+<div id="outline-container-orgdd633c1" class="outline-2">
+<h2 id="orgdd633c1">Eglot</h2>
+<div class="outline-text-2" id="text-orgdd633c1">
 <p>
 实际上，迁移到 eglot 上的成本远低于我的预估，eglot 的代码质量很好，易于理解(3000行lisp)，在迁移的过程中我也学习到了很多 emacs-lisp 的知识。
 </p>
 </div>
 
-<div id="outline-container-org006dc27" class="outline-3">
-<h3 id="org006dc27">Language Server 安装</h3>
-<div class="outline-text-3" id="text-org006dc27">
+<div id="outline-container-orga1e064c" class="outline-3">
+<h3 id="orga1e064c">Language Server 安装</h3>
+<div class="outline-text-3" id="text-orga1e064c">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #268bd2; background-color: #f9f6ed; font-weight: bold;">tree</span> <span style="color: #6c71c4; font-weight: bold;">-L</span> 3 ~/.emacs.d/cache/language-server/
 </pre>
 </div>
 
-<pre class="example" id="org6700508">
+<pre class="example" id="orgf03fa06">
 /home/zsxh/.emacs.d/cache/language-server/
 ├── bin
 │   ├── clojure-lsp -&gt; /home/zsxh/.emacs.d/cache/language-server/clojure/clojure-lsp
@@ -105,9 +105,9 @@ lsp-mode 和 dap-mode 基本上已经在 Emacs 上还原了大部分 VSCode Lanu
 </div>
 </div>
 
-<div id="outline-container-org74011f1" class="outline-3">
-<h3 id="org74011f1">eglot 基本配置</h3>
-<div class="outline-text-3" id="text-org74011f1">
+<div id="outline-container-org9683ffb" class="outline-3">
+<h3 id="org9683ffb">eglot 基本配置</h3>
+<div class="outline-text-3" id="text-org9683ffb">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold; font-style: italic;">require</span> '<span style="color: #6c71c4; font-weight: bold;">eglot</span><span style="color: #268bd2;">)</span>
 
@@ -150,9 +150,9 @@ lsp-mode 和 dap-mode 基本上已经在 Emacs 上还原了大部分 VSCode Lanu
 </div>
 </div>
 
-<div id="outline-container-org1b7cbdf" class="outline-3">
-<h3 id="org1b7cbdf">Eglot 支持扩展</h3>
-<div class="outline-text-3" id="text-org1b7cbdf">
+<div id="outline-container-orgcc28684" class="outline-3">
+<h3 id="orgcc28684">Eglot 支持扩展协议</h3>
+<div class="outline-text-3" id="text-orgcc28684">
 <p>
 需要注意的是，eglot 只实现了 LSP 的标准协议，向 jdtls 的 <code>jdt://</code>, clojure 的 <code>jar:file://</code> 和 <code>zipfile://</code>
 等扩展 uri scheme 是不支持的，这块功能比较简单，周末花了点时间去实现。
@@ -234,9 +234,9 @@ lsp-mode 和 dap-mode 基本上已经在 Emacs 上还原了大部分 VSCode Lanu
 </div>
 </div>
 
-<div id="outline-container-org3d75c41" class="outline-2">
-<h2 id="org3d75c41">总结</h2>
-<div class="outline-text-2" id="text-org3d75c41">
+<div id="outline-container-orgbb7d8ca" class="outline-2">
+<h2 id="orgbb7d8ca">总结</h2>
+<div class="outline-text-2" id="text-orgbb7d8ca">
 <p>
 eglot 的代码补全，错误提示，代码跳转功能都是用的 Emacs 原生的功能实现的，没有像 lsp-mode 那样引入了一大堆依赖，
 而且代码清晰可读性强。
