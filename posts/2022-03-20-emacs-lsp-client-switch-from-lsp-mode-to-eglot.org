@@ -1,0 +1,187 @@
+#+title: Emacs LSP 客户端，从 lsp-mode 迁移到 eglot
+#+date: <2022-03-20 20:45>
+#+description:
+#+filetags: Emacs, eglot, lsp-mode
+
+* TL;DR
+
+前段时间 Eclipse JDTLS 在社区的呼吁下终于提供了一个简易的启动脚本，借此机会，在本周末我尝试下从 lsp-mode
+迁移到 eglot，顺便记录一下遇到的一些问题和感想。
+
+* 迁移的动机
+
+lsp-mode 和 dap-mode 基本上已经在 Emacs 上还原了大部分 VSCode Lanuage Server 上面的功能，
+但让我不太满意的一点是，lsp-mode 配置比较复杂，需要在我看来是不重要的功能被默认开启，使用时需要我把很多不用的功能
+手动关掉，而且性能上也存在问题。
+
+* Eglot
+
+实际上，迁移到 eglot 上的成本远低于我的预估，eglot 的代码质量很好，易于理解(3000行lisp)，在迁移的过程中我也学习到了很多 emacs-lisp 的知识。
+
+** Language Server 安装
+
+#+begin_src shell :results output
+  tree -L 3 ~/.emacs.d/cache/language-server/
+#+end_src
+
+#+RESULTS:
+#+begin_example
+/home/zsxh/.emacs.d/cache/language-server/
+├── bin
+│   ├── clojure-lsp -> /home/zsxh/.emacs.d/cache/language-server/clojure/clojure-lsp
+│   ├── jdtls -> /home/zsxh/.emacs.d/cache/language-server/java/jdtls/bin/jdtls
+│   └── rust-analyzer -> /home/zsxh/.emacs.d/cache/language-server/rust/rust-analyzer
+├── clojure
+│   └── clojure-lsp
+├── java
+│   ├── bundles
+│   │   ├── dg.jdt.ls.decompiler.cfr-0.0.3.jar
+│   │   ├── dg.jdt.ls.decompiler.common-0.0.3.jar
+│   │   ├── dg.jdt.ls.decompiler.fernflower-0.0.3.jar
+│   │   └── dg.jdt.ls.decompiler.procyon-0.0.3.jar
+│   ├── java-decompiler
+│   │   ├── [Content_Types].xml
+│   │   ├── extension
+│   │   └── extension.vsixmanifest
+│   └── jdtls
+│       ├── bin
+│       ├── config_linux
+│       ├── config_mac
+│       ├── config_ss_linux
+│       ├── config_ss_mac
+│       ├── config_ss_win
+│       ├── config_win
+│       ├── features
+│       └── plugins
+└── rust
+    └── rust-analyzer
+
+17 directories, 11 files
+#+end_example
+
+~/.emacs.d/cache/language-server/bin 加到 $PATH 当中，将各个 language server 链接到此目录下
+
+** eglot 基本配置
+
+#+begin_src emacs-lisp
+  (require 'eglot)
+
+  ;; 定义启动命令和参数
+  (add-to-list 'eglot-server-programs
+                 `(java-mode "jdtls"
+                             "-configuration" ,(expand-file-name "cache/language-server/java/jdtls/config_linux" user-emacs-directory)
+                             "-data" ,(expand-file-name "cache/java-workspace" user-emacs-directory)
+                             ,(concat "--jvm-arg=-javaagent:" (expand-file-name "~/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"))))
+
+  ;; 服务端启动成功后，客户端需要传一些初始化参数给服务端，相关参数在各自的服务端github上面找
+  (cl-defmethod eglot-initialization-options ((server eglot-lsp-server) &context (major-mode java-mode))
+    `(:settings
+      (:java
+       (:configuration
+        (:runtime [(:name "JavaSE-1.8" :path "/usr/local/jdk-8")
+                   (:name "JavaSE-11" :path "/usr/local/graalvm-ce-java11-22.0.0.2")
+                   (:name "JavaSE-17" :path "/usr/local/graalvm-ce-java17-22.0.0.2" :default t)])
+        :format (:settings (:url ,(expand-file-name (locate-user-emacs-file "cache/eclipse-java-google-style.xml"))
+                                 :profile "GoogleStyle"))
+        ;; NOTE: https://github.com/redhat-developer/vscode-java/issues/406#issuecomment-356303715
+        ;; > We enabled it by default so that workspace-wide errors can be reported (eg. removing a public method in one class would cause compilation errors in other files consuming that method).
+        ;; for large workspaces, it may make sense to be able to disable autobuild if it negatively impacts performance.
+        :autobuild (:enabled t)
+        ;; https://github.com/dgileadi/vscode-java-decompiler
+        :contentProvider (:preferred "fernflower")))
+      ;; support non standard LSP `java/classFileContents', `Location' items that have a `jdt://...' uri
+      ;; https://github.com/eclipse/eclipse.jdt.ls/issues/1384
+      :extendedClientCapabilities (:classFileContentsSupport t)
+      ;; bundles: decompilers, etc.
+      ;; https://github.com/dgileadi/dg.jdt.ls.decompiler
+      :bundles ,(let ((bundles-dir (expand-file-name (locate-user-emacs-file "cache/language-server/java/bundles" user-emacs-directory)))
+                      jdtls-bundles)
+                  (->> (when (file-directory-p bundles-dir)
+                         (directory-files bundles-dir t "\\.jar$"))
+                       (append jdtls-bundles)
+                       (apply #'vector)))))
+#+end_src
+
+** Eglot 支持扩展
+
+需要注意的是，eglot 只实现了 LSP 的标准协议，向 jdtls 的 =jdt://=, clojure 的 =jar:file://= 和 =zipfile://=
+等扩展 uri scheme 是不支持的，这块功能比较简单，周末花了点时间去实现。
+
+#+begin_src emacs-lisp
+  ;; https://github.com/joaotavora/eglot/discussions/888#discussioncomment-2386710
+  (cl-defmethod eglot-execute-command
+    (_server (_cmd (eql java.apply.workspaceEdit)) arguments)
+    "Eclipse JDT breaks spec and replies with edits as arguments."
+    (mapc #'eglot--apply-workspace-edit arguments))
+
+  (cl-defgeneric +eglot/ext-uri-to-path (uri)
+    "Support extension uri."
+    nil)
+
+  ;; https://github.com/eclipse/eclipse.jdt.ls/blob/b4e5cb4b693d5d503d90be89b0b9a8abe9db41a5/org.eclipse.jdt.ls.core/src/org/eclipse/jdt/ls/core/internal/JDTUtils.java#L809
+  (cl-defmethod +eglot/ext-uri-to-path (uri &context (major-mode java-mode))
+    "Support Eclipse jdtls `jdt://' uri scheme."
+    (when-let* ((jdt-scheme-p (string-prefix-p "jdt://" uri))
+                (filename (save-match-data
+                            (when (string-match "jdt://contents/\\(.*?\\)/\\(.*\\)\.class\\?" uri)
+                              (format "%s.java"
+                                      (replace-regexp-in-string "/" "." (match-string 2 uri) t t))))))
+      (+eglot/create-source-file :java/classFileContents uri filename)))
+
+  ;; https://github.com/emacs-lsp/lsp-mode/blob/d3bc47bde5ffc1bace40122a6ec0c6d8b9e84500/clients/lsp-clojure.el#L272
+  ;; https://github.com/clojure-lsp/clojure-lsp/blob/master/lib/test/clojure_lsp/shared_test.clj
+  (cl-defmethod +eglot/ext-uri-to-path (uri &context (major-mode clojure-mode))
+    "Support Clojure-lsp `zifile://', `jar:file://' uri scheme."
+    (when-let* ((clj-scheme-p (or (string-prefix-p "jar:file://" uri)
+                                  (string-prefix-p "zipfile://" uri)))
+                (filename (when (string-match "^\\(jar:file\\|zipfile\\)://.+\\(!/\\|::\\)\\(.+\\)" uri)
+                            (let* ((ns-path (match-string 3 uri))
+                                   (filename (replace-regexp-in-string "/" "." ns-path)))
+                              filename))))
+      (+eglot/create-source-file :clojure/dependencyContents uri filename)))
+
+  (defun +eglot/create-source-file (method uri filename)
+    "Create source file and metadata in project root .eglot directory."
+    (let* ((cache-dir (file-name-concat (project-root (eglot--current-project)) ".eglot"))
+           (source-file (expand-file-name (file-name-concat cache-dir filename))))
+      (unless (file-readable-p source-file)
+        (let ((content (jsonrpc-request (eglot--current-server-or-lose) method (list :uri uri)))
+              (metadata-file (+eglot/path-to-metadata-file source-file)))
+          (unless (file-directory-p cache-dir) (make-directory cache-dir t))
+          (with-temp-file source-file (insert content))
+          (with-temp-file metadata-file (insert uri))))
+      source-file))
+
+  (defun +eglot/path-to-metadata-file (path)
+    (format "%s.%s.metadata" (file-name-directory path) (file-name-base path)))
+
+  (defun +eglot/path-to-ext-uri (path)
+    "Retrieve extension uri from metadata."
+    (let ((metadata-file (+eglot/path-to-metadata-file path)))
+      (when (file-exists-p metadata-file)
+        (with-temp-buffer
+          (insert-file-contents metadata-file)
+          (buffer-string)))))
+
+  (define-advice eglot--uri-to-path (:around (orig-fn uri) advice)
+    "Support non standard LSP uri scheme."
+    (or (+eglot/ext-uri-to-path uri)
+        (funcall orig-fn uri)))
+
+  (define-advice eglot--path-to-uri (:around (orig-fn path) advice)
+    "Support non standard LSP uri scheme."
+    (or (+eglot/path-to-ext-uri path)
+        (funcall orig-fn path)))
+#+end_src
+
+分别对 ~eglot--uri-to-path~, ~eglot--path-to-uri~ 这两个方法做了增强，这也是我喜欢 Emacs 的一个原因，
+使用者非常容易获取源码并对其进行修改。
+
+* 总结
+
+eglot 的代码补全，错误提示，代码跳转功能都是用的 Emacs 原生的功能实现的，没有像 lsp-mode 那样引入了一大堆依赖，
+而且代码清晰可读性强。
+
+在测试使用过程中，感觉 eglot 明显比 lsp-mode 流畅，缺点是只支持标准 LSP 协议，对于各个语言服务的扩展协议，
+需要自己去实现或是找到别人实现过的来使用。
+

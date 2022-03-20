@@ -1,0 +1,23 @@
+#+title: Qemu/KVM passthrough xbox one controller
+#+date: <2022-02-12 10:00>
+#+startup: showall
+#+filetags: xbox-controller kvm qemu
+
+需要 microusb 充电+传数据的线 (用usb连接记得拔掉电池)
+
+host don't load xpad mod
+
+https://unix.stackexchange.com/questions/452751/how-can-i-pass-through-an-xbox-one-controller-to-a-windows-vm-on-ubuntu
+https://askubuntu.com/questions/110341/how-to-blacklist-kernel-modules
+https://www.reddit.com/r/VFIO/comments/pkna3g/game_controller_dongle_usb_passthrough_to_win10/
+https://access.redhat.com/solutions/41278
+
+virt-manager setttings
+
+[[file:../images/virt-manager.png]]
+
+guest
+
+[[file:../images/xbox.png]]
+
+期间需要反复重新连接手柄(重启guest，手柄主动按home键连接)

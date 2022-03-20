@@ -27,10 +27,10 @@
 </div></div>
 <div id="content">
 <h1 class="post-title"><a href="https://zsxh.github.io/html/2020-10-02-reinstall-linux-deepin.html">Manjaro Deepin V20 环境配置若干问题</a></h1>
-<div class="post-date"> Posted: 2020-10-02&ensp;Updated: 2020-12-06</div>
-<div id="outline-container-orgea2a829" class="outline-2">
-<h2 id="orgea2a829">Manjaro Deepin</h2>
-<div class="outline-text-2" id="text-orgea2a829">
+<div class="post-date"> Posted: 2020-10-02&ensp;Updated: 2020-12-10</div>
+<div id="outline-container-orgcb2cd2b" class="outline-2">
+<h2 id="orgcb2cd2b">Manjaro Deepin</h2>
+<div class="outline-text-2" id="text-orgcb2cd2b">
 <p>
 <code>xps15 9570</code> 的 256GB 固态硬盘空间早就不够用了，所以上网买了个 1TB 的固体硬盘，正好最近 deepin 发布了 V20,
 Manjaro 社区也有人做了 deepin V20 的镜像，所以趁国庆假期把系统环境重新部署一遍。得益于 <code>Org-mode</code> 强大的文学编程
@@ -39,9 +39,9 @@ Manjaro 社区也有人做了 deepin V20 的镜像，所以趁国庆假期把系
 </div>
 </div>
 
-<div id="outline-container-orgd2630c7" class="outline-2">
-<h2 id="orgd2630c7">Emacs + ibus-rime 中文输入法</h2>
-<div class="outline-text-2" id="text-orgd2630c7">
+<div id="outline-container-org5d75e30" class="outline-2">
+<h2 id="org5d75e30">Emacs + ibus-rime 中文输入法</h2>
+<div class="outline-text-2" id="text-org5d75e30">
 <p>
 从 <code>pacman</code> 上安装 <code>ibus-rime</code>，按照需求把 <code>GTK_IM_MODULE, XMODIFIERS, QT_IM_MODULE</code> 环境变量配好后，
 在所有 GTK, QT 的应用上输入法正常工作，唯独在 <code>Emacs</code> 无法工作，一度我以为是 <code>Emacs</code> 环境变量没获取到的问题。
@@ -51,9 +51,9 @@ Manjaro 社区也有人做了 deepin V20 的镜像，所以趁国庆假期把系
 </div>
 </div>
 
-<div id="outline-container-org5202279" class="outline-2">
-<h2 id="org5202279">蓝牙</h2>
-<div class="outline-text-2" id="text-org5202279">
+<div id="outline-container-org6545bbd" class="outline-2">
+<h2 id="org6545bbd">蓝牙</h2>
+<div class="outline-text-2" id="text-org6545bbd">
 <p>
 重装后，我的 Bose QC 35 一直连接不上，Manjaro Deepin GUI 也没显示错误信息，所以安装 <code>bluez-utils</code> 包，
 尝试通过其提供的 <code>bluetoothctl</code> 命令行进行连接。发现匹配操作(pair)成功，但是连接操作(connect)失败，
@@ -68,16 +68,16 @@ Xbox One 手柄(Controller) 则是反复出现连接/连接失败的状态，Arc
 </div>
 </div>
 
-<div id="outline-container-orge7f66fd" class="outline-2">
-<h2 id="orge7f66fd">显卡</h2>
-<div class="outline-text-2" id="text-orge7f66fd">
+<div id="outline-container-org0054e06" class="outline-2">
+<h2 id="org0054e06">显卡</h2>
+<div class="outline-text-2" id="text-org0054e06">
 <p>
 虽然现如今 Linux 英伟达的驱动已经有极大的改善，但暂时还没达到 Win 下的状态，特别是关于 Optimus 这一块。
 像 Ubuntu 做了 Prime，Manjaro 可以安装 <code>nvidia-{NUM}-utils, linux{num}-nvidia-{NUM}xx, lib32-nvidia-{NUM}xx-utils</code>，
 然后用 <a href="https://github.com/Askannz/optimus-manager">optimus-manager</a> 进行手动切换。安装 <code>optimus-manager</code> 重启后发现触摸板不工作了，
 用 <code>jounalctl -b0</code> 查了一下系统日志发现果然是 acpi 错误导致后续的触摸板模块没加载上，需要修改 <code>GRUB_CMDLINE_LINUX_DEFAULT</code>，
 我的是 xps15 9570，上网查了一下资料，给 <code>/etc/default/grub</code> 文件的 <code>GRUB_CMDLINE_LINUX_DEFAULT</code> 加上
-<code>acpi_osi​=! acpi_osi​='Windows 2009'</code> 参数。
+<code>acpi_osi=! acpi_osi='Windows 2009'</code> 参数。
 </p>
 </div>
 </div>

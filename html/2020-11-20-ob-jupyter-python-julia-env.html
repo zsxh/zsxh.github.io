@@ -5,7 +5,7 @@
 <link rel="alternate"
       type="application/rss+xml"
       href="https://zsxh.github.io/rss.xml"
-      title="RSS feed for https://zsxh.github.io/"/>
+      title="RSS feed for https://zsxh.github.io/">
 <title>ob-jupyter Python Julia 环境变量设置</title>
 <meta name="author" content="ZSXH">
 <meta name="referrer" content="no-referrer">
@@ -17,8 +17,7 @@
 <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
 <meta name="viewport" content="initial-scale=1,width=device-width,minimum-scale=1"></head>
 <body>
-<div id="preamble" class="status">
-<div class="header">
+<div id="preamble" class="status"><div class="header">
 <a href="/index.html">Home</a> |
 <a href="/archive.html">Archive</a> |
 <a href="/html/resource.html">Resources</a> |
@@ -28,15 +27,15 @@
 </div></div>
 <div id="content">
 <h1 class="post-title"><a href="https://zsxh.github.io/html/2020-11-20-ob-jupyter-python-julia-env.html">ob-jupyter Python Julia 环境变量设置</a></h1>
-<div class="post-date"> Posted: 2020-11-20&ensp;Updated: 2020-11-21</div><p>
+<div class="post-date"> Posted: 2020-11-20&ensp;Updated: 2020-12-10</div><p>
 ob-jupyter 是 <a href="https://github.com/nnicandro/emacs-jupyter">emacs-jupyter</a> 的一个 Org-mode 插件，jupyter 作为后端，org-mode 作为前端将计算结果归档到 org 文件里，
 非常灵活方便。两者结合使用时，这里记录一下我踩过的坑。
 </p>
 
-<div id="outline-container-orgce39bf9" class="outline-2">
-<h2 id="orgce39bf9">C-c C-c 执行 Org Babel 代码块时找不到 jupyter?</h2>
-<div class="outline-text-2" id="text-orgce39bf9">
-<pre class="example" id="orgc64ef32">
+<div id="outline-container-orgcdad293" class="outline-2">
+<h2 id="orgcdad293">C-c C-c 执行 Org Babel 代码块时找不到 jupyter?</h2>
+<div class="outline-text-2" id="text-orgcdad293">
+<pre class="example" id="org667c734">
 Error retrieving kernelspecs: (error "Can’t obtain kernelspecs from jupyter shell command")
 ...
 org-babel-execute-src-block: No org-babel-execute function for jupyter-julia!
@@ -56,7 +55,7 @@ jupyter 相关库安装在 conda 创建的虚拟环境中。
 这里我需要先执行一下以下代码
 </p>
 
-<pre class="example" id="orgc264884">
+<pre class="example" id="orgb04d79a">
 #+begin_src emacs-lisp
   (conda-env-activate "PYTHON-VIRTUAL-ENV") ; 激活 python 虚拟环境
   (org-babel-jupyter-aliases-from-kernelspecs t) ; 刷新 kernel SPECS，创建 org-bable-execute:jupyter-LANG 方法
@@ -70,21 +69,21 @@ jupyter 相关库安装在 conda 创建的虚拟环境中。
 </div>
 </div>
 
-<div id="outline-container-orga2bcfed" class="outline-2">
-<h2 id="orga2bcfed">Jupyter 在 python 虚拟环境中，project local IJulia 如何安装使之生效?</h2>
-<div class="outline-text-2" id="text-orga2bcfed">
+<div id="outline-container-org2ddbca6" class="outline-2">
+<h2 id="org2ddbca6">Jupyter 在 python 虚拟环境中，project local IJulia 如何安装使之生效?</h2>
+<div class="outline-text-2" id="text-org2ddbca6">
 <p>
 在终端执行 <code>julia</code> 进入 julia repl 环境，安装 IJulia
 </p>
 
 <div class="org-src-container">
-<pre class="src src-julia">using Pkg
-Pkg.activate("YOUR-IJULIA-PROJECT-PATH") # IJulia 安装在指定项目环境中
-# https://julialang.github.io/IJulia.jl/stable/manual/installation/
-ENV["JUPYTER"]="jupyter命令的路径" # 如果jupyter安装在虚拟环境中，需要给julia指定一个JUPYTER路径的环境变量
-Pkg.add(["IJulia"])
-using IJulia
-Pkg.build("IJulia")
+<pre class="src src-julia"><span style="color: #859900; font-weight: bold; font-style: italic;">using</span> Pkg
+Pkg.activate(<span style="color: #2aa198;">"YOUR-IJULIA-PROJECT-PATH"</span>) <span style="color: #96A7A9; font-style: italic;"># </span><span style="color: #96A7A9; font-style: italic;">IJulia &#23433;&#35013;&#22312;&#25351;&#23450;&#39033;&#30446;&#29615;&#22659;&#20013;</span>
+<span style="color: #96A7A9; font-style: italic;"># </span><span style="color: #96A7A9; font-style: italic;">https://julialang.github.io/IJulia.jl/stable/manual/installation/</span>
+ENV[<span style="color: #2aa198;">"JUPYTER"</span>]=<span style="color: #2aa198;">"jupyter&#21629;&#20196;&#30340;&#36335;&#24452;"</span> <span style="color: #96A7A9; font-style: italic;"># </span><span style="color: #96A7A9; font-style: italic;">&#22914;&#26524;jupyter&#23433;&#35013;&#22312;&#34394;&#25311;&#29615;&#22659;&#20013;&#65292;&#38656;&#35201;&#32473;julia&#25351;&#23450;&#19968;&#20010;JUPYTER&#36335;&#24452;&#30340;&#29615;&#22659;&#21464;&#37327;</span>
+Pkg.add([<span style="color: #2aa198;">"IJulia"</span>])
+<span style="color: #859900; font-weight: bold; font-style: italic;">using</span> IJulia
+Pkg.build(<span style="color: #2aa198;">"IJulia"</span>)
 </pre>
 </div>
 
@@ -92,7 +91,7 @@ Pkg.build("IJulia")
 在终端启动 <code>jupyter notebook</code> 创建 julia 内核的 notebook，抛出错误信息：
 </p>
 
-<pre class="example" id="org71ed2aa">
+<pre class="example" id="org880268f">
 Stacktrace:
 [1] require(::Module, ::Symbol) at ./loading.jl:893
 [2] include(::Function, ::Module, ::String) at ./Base.jl:380
@@ -110,7 +109,7 @@ ERROR: LoadError: ArgumentError: Package IJulia not found in current path:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell">export JULIA_LOAD_PATH="YOUR-IJULIA-PROJECT-PATH"
+<pre class="src src-shell"><span style="color: #859900; font-weight: bold; font-style: italic;">export</span> <span style="color: #268bd2; font-weight: bold; font-style: italic;">JULIA_LOAD_PATH</span>=<span style="color: #2aa198;">"YOUR-IJULIA-PROJECT-PATH"</span>
 </pre>
 </div>
 
@@ -118,7 +117,7 @@ ERROR: LoadError: ArgumentError: Package IJulia not found in current path:
 如果是在 Org-mode 中，则可以执行以下 org babel 代码块：
 </p>
 
-<pre class="example" id="orgd18ba1e">
+<pre class="example" id="orgba83d2a">
 #+begin_src emacs-lisp
   (setenv "JULIA_LOAD_PATH" "YOUR-IJULIA-PROJECT-PATH")
 #+end_src
@@ -126,9 +125,9 @@ ERROR: LoadError: ArgumentError: Package IJulia not found in current path:
 </div>
 </div>
 
-<div id="outline-container-org5c15f21" class="outline-2">
-<h2 id="org5c15f21">参考</h2>
-<div class="outline-text-2" id="text-org5c15f21">
+<div id="outline-container-org09195d6" class="outline-2">
+<h2 id="org09195d6">参考</h2>
+<div class="outline-text-2" id="text-org09195d6">
 <ul class="org-ul">
 <li><a href="https://github.com/JuliaLang/julia/issues/29513">https://github.com/JuliaLang/julia/issues/29513</a></li>
 </ul>
