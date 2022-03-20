@@ -1,7 +1,7 @@
 #+title: Emacs LSP 客户端，从 lsp-mode 迁移到 eglot
 #+date: <2022-03-20 20:45>
 #+description:
-#+filetags: Emacs, eglot, lsp-mode
+#+filetags: Emacs eglot lsp-mode
 
 * TL;DR
 
