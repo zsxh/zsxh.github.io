@@ -27,10 +27,10 @@
 </div></div>
 <div id="content">
 <h1 class="post-title"><a href="https://zsxh.github.io/html/2022-03-20-emacs-lsp-client-switch-from-lsp-mode-to-eglot.html">Emacs LSP 客户端，从 lsp-mode 迁移到 eglot</a></h1>
-<div class="post-date"> Posted: 2022-03-20</div>
-<div id="outline-container-org79214ca" class="outline-2">
-<h2 id="org79214ca">TL;DR</h2>
-<div class="outline-text-2" id="text-org79214ca">
+<div class="post-date"> Posted: 2022-03-20&ensp;Updated: 2022-03-22</div>
+<div id="outline-container-org8172921" class="outline-2">
+<h2 id="org8172921">TL;DR</h2>
+<div class="outline-text-2" id="text-org8172921">
 <p>
 前段时间 Eclipse JDTLS 在社区的呼吁下终于提供了一个简易的启动脚本，借此机会，在本周末我尝试下从 lsp-mode
 迁移到 eglot，顺便记录一下遇到的一些问题和感想。
@@ -38,9 +38,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0b889a1" class="outline-2">
-<h2 id="org0b889a1">迁移的动机</h2>
-<div class="outline-text-2" id="text-org0b889a1">
+<div id="outline-container-org12efdea" class="outline-2">
+<h2 id="org12efdea">迁移的动机</h2>
+<div class="outline-text-2" id="text-org12efdea">
 <p>
 lsp-mode 和 dap-mode 基本上已经在 Emacs 上还原了大部分 VSCode Language Server 上面的功能，
 但让我不太满意的一点是，lsp-mode 配置比较复杂，需要在我看来是不重要的功能被默认开启，使用时需要我把很多不用的功能
@@ -49,23 +49,23 @@ lsp-mode 和 dap-mode 基本上已经在 Emacs 上还原了大部分 VSCode Lang
 </div>
 </div>
 
-<div id="outline-container-org67cc0cc" class="outline-2">
-<h2 id="org67cc0cc">Eglot</h2>
-<div class="outline-text-2" id="text-org67cc0cc">
+<div id="outline-container-org8595b50" class="outline-2">
+<h2 id="org8595b50">Eglot</h2>
+<div class="outline-text-2" id="text-org8595b50">
 <p>
 实际上，迁移到 eglot 上的成本远低于我的预估，eglot 的代码质量很好，易于理解(3000行lisp)，在迁移的过程中我也学习到了很多 emacs-lisp 的知识。
 </p>
 </div>
 
-<div id="outline-container-org5b328ce" class="outline-3">
-<h3 id="org5b328ce">Language Server 安装</h3>
-<div class="outline-text-3" id="text-org5b328ce">
+<div id="outline-container-org259d484" class="outline-3">
+<h3 id="org259d484">Language Server 安装</h3>
+<div class="outline-text-3" id="text-org259d484">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #268bd2; background-color: #f9f6ed; font-weight: bold;">tree</span> <span style="color: #6c71c4; font-weight: bold;">-L</span> 3 ~/.emacs.d/cache/language-server/
 </pre>
 </div>
 
-<pre class="example" id="orgd14f3eb">
+<pre class="example" id="orgc799ad4">
 /home/zsxh/.emacs.d/cache/language-server/
 ├── bin
 │   ├── clojure-lsp -&gt; /home/zsxh/.emacs.d/cache/language-server/clojure/clojure-lsp
@@ -105,15 +105,15 @@ lsp-mode 和 dap-mode 基本上已经在 Emacs 上还原了大部分 VSCode Lang
 </div>
 </div>
 
-<div id="outline-container-orgdedfe23" class="outline-3">
-<h3 id="orgdedfe23">eglot 基本配置</h3>
-<div class="outline-text-3" id="text-orgdedfe23">
+<div id="outline-container-org8a02b52" class="outline-3">
+<h3 id="org8a02b52">eglot 基本配置</h3>
+<div class="outline-text-3" id="text-org8a02b52">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold; font-style: italic;">require</span> '<span style="color: #6c71c4; font-weight: bold;">eglot</span><span style="color: #268bd2;">)</span>
 
 <span style="color: #96A7A9; font-style: italic;">;; </span><span style="color: #96A7A9; font-style: italic;">&#23450;&#20041;&#21551;&#21160;&#21629;&#20196;&#21644;&#21442;&#25968;</span>
 <span style="color: #268bd2;">(</span><span style="color: #6c71c4; font-weight: bold;">add-to-list</span> '<span style="color: #268bd2;">eglot-server-programs</span>
-               `<span style="color: #d33682;">(</span><span style="color: #b58900; background-color: #f9f6ed;">java-mode</span> <span style="color: #2aa198;">"jdtls"</span>
+               `<span style="color: #d33682;">(</span><span style="color: #6c71c4; font-weight: bold;">java-mode</span> <span style="color: #2aa198;">"jdtls"</span>
                            <span style="color: #2aa198;">"-configuration"</span> ,<span style="color: #859900;">(</span><span style="color: #6c71c4; font-weight: bold;">expand-file-name</span> <span style="color: #2aa198;">"cache/language-server/java/jdtls/config_linux"</span> <span style="color: #268bd2;">user-emacs-directory</span><span style="color: #859900;">)</span>
                            <span style="color: #2aa198;">"-data"</span> ,<span style="color: #859900;">(</span><span style="color: #6c71c4; font-weight: bold;">expand-file-name</span> <span style="color: #2aa198;">"cache/java-workspace"</span> <span style="color: #268bd2;">user-emacs-directory</span><span style="color: #859900;">)</span>
                            ,<span style="color: #859900;">(</span><span style="color: #6c71c4; font-weight: bold;">concat</span> <span style="color: #2aa198;">"--jvm-arg=-javaagent:"</span> <span style="color: #6c71c4;">(</span><span style="color: #6c71c4; font-weight: bold;">expand-file-name</span> <span style="color: #2aa198;">"~/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"</span><span style="color: #6c71c4;">)</span><span style="color: #859900;">)</span><span style="color: #d33682;">)</span><span style="color: #268bd2;">)</span>
@@ -150,9 +150,9 @@ lsp-mode 和 dap-mode 基本上已经在 Emacs 上还原了大部分 VSCode Lang
 </div>
 </div>
 
-<div id="outline-container-org319c4d1" class="outline-3">
-<h3 id="org319c4d1">Eglot 支持扩展协议</h3>
-<div class="outline-text-3" id="text-org319c4d1">
+<div id="outline-container-orgf3f75dd" class="outline-3">
+<h3 id="orgf3f75dd">Eglot 支持扩展协议</h3>
+<div class="outline-text-3" id="text-orgf3f75dd">
 <p>
 需要注意的是，eglot 只实现了 LSP 的标准协议，向 jdtls 的 <code>jdt://</code>, clojure 的 <code>jar:file://</code> 和 <code>zipfile://</code>
 等扩展 uri scheme 是不支持的，这块功能比较简单，周末花了点时间去实现。
@@ -196,7 +196,7 @@ lsp-mode 和 dap-mode 基本上已经在 Emacs 上还原了大部分 VSCode Lang
   <span style="color: #d33682;">(</span><span style="color: #859900; font-weight: bold; font-style: italic;">let*</span> <span style="color: #859900;">(</span><span style="color: #6c71c4;">(</span>cache-dir <span style="color: #35a69c;">(</span><span style="color: #6c71c4; font-weight: bold;">file-name-concat</span> <span style="color: #268bd2;">(</span><span style="color: #b58900; background-color: #f9f6ed;">project-root</span> <span style="color: #d33682;">(</span><span style="color: #6c71c4; font-weight: bold;">eglot--current-project</span><span style="color: #d33682;">)</span><span style="color: #268bd2;">)</span> <span style="color: #2aa198;">".eglot"</span><span style="color: #35a69c;">)</span><span style="color: #6c71c4;">)</span>
          <span style="color: #6c71c4;">(</span>source-file <span style="color: #35a69c;">(</span><span style="color: #6c71c4; font-weight: bold;">expand-file-name</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4; font-weight: bold;">file-name-concat</span> cache-dir filename<span style="color: #268bd2;">)</span><span style="color: #35a69c;">)</span><span style="color: #6c71c4;">)</span><span style="color: #859900;">)</span>
     <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold; font-style: italic;">unless</span> <span style="color: #6c71c4;">(</span><span style="color: #6c71c4; font-weight: bold;">file-readable-p</span> source-file<span style="color: #6c71c4;">)</span>
-      <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold; font-style: italic;">let</span> <span style="color: #35a69c;">(</span><span style="color: #268bd2;">(</span>content <span style="color: #d33682;">(</span><span style="color: #6c71c4; font-weight: bold;">jsonrpc-request</span> <span style="color: #859900;">(</span><span style="color: #6c71c4; font-weight: bold;">eglot--current-server-or-lose</span><span style="color: #859900;">)</span> method <span style="color: #859900;">(</span><span style="color: #6c71c4; font-weight: bold;">list</span> <span style="color: #268bd2;">:uri</span> uri<span style="color: #859900;">)</span><span style="color: #d33682;">)</span><span style="color: #268bd2;">)</span>
+      <span style="color: #6c71c4;">(</span><span style="color: #859900; font-weight: bold; font-style: italic;">let</span> <span style="color: #35a69c;">(</span><span style="color: #268bd2;">(</span>content <span style="color: #d33682;">(</span><span style="color: #b58900; background-color: #f9f6ed;">jsonrpc-request</span> <span style="color: #859900;">(</span><span style="color: #6c71c4; font-weight: bold;">eglot--current-server-or-lose</span><span style="color: #859900;">)</span> method <span style="color: #859900;">(</span><span style="color: #6c71c4; font-weight: bold;">list</span> <span style="color: #268bd2;">:uri</span> uri<span style="color: #859900;">)</span><span style="color: #d33682;">)</span><span style="color: #268bd2;">)</span>
             <span style="color: #268bd2;">(</span>metadata-file <span style="color: #d33682;">(</span><span style="color: #b58900; background-color: #f9f6ed;">+eglot/path-to-metadata-file</span> source-file<span style="color: #d33682;">)</span><span style="color: #268bd2;">)</span><span style="color: #35a69c;">)</span>
         <span style="color: #35a69c;">(</span><span style="color: #859900; font-weight: bold; font-style: italic;">unless</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4; font-weight: bold;">file-directory-p</span> cache-dir<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4; font-weight: bold;">make-directory</span> cache-dir t<span style="color: #268bd2;">)</span><span style="color: #35a69c;">)</span>
         <span style="color: #35a69c;">(</span><span style="color: #859900; font-weight: bold; font-style: italic;">with-temp-file</span> source-file <span style="color: #268bd2;">(</span><span style="color: #6c71c4; font-weight: bold;">insert</span> content<span style="color: #268bd2;">)</span><span style="color: #35a69c;">)</span>
@@ -216,6 +216,7 @@ lsp-mode 和 dap-mode 基本上已经在 Emacs 上还原了大部分 VSCode Lang
 
 <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold; font-style: italic;">define-advice</span> <span style="color: #b58900; background-color: #f9f6ed;">eglot--uri-to-path</span> <span style="color: #d33682;">(</span><span style="color: #d33682; font-style: italic;">:around</span> <span style="color: #859900;">(</span>orig-fn uri<span style="color: #859900;">)</span> advice<span style="color: #d33682;">)</span>
   <span style="color: #35a69c; font-style: italic;">"Support non standard LSP uri scheme."</span>
+  <span style="color: #d33682;">(</span><span style="color: #859900; font-weight: bold; font-style: italic;">when</span> <span style="color: #859900;">(</span><span style="color: #6c71c4; font-weight: bold;">keywordp</span> uri<span style="color: #859900;">)</span> <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold; font-style: italic;">setq</span> uri <span style="color: #6c71c4;">(</span><span style="color: #6c71c4; font-weight: bold;">substring</span> <span style="color: #35a69c;">(</span><span style="color: #6c71c4; font-weight: bold;">symbol-name</span> uri<span style="color: #35a69c;">)</span> 1<span style="color: #6c71c4;">)</span><span style="color: #859900;">)</span><span style="color: #d33682;">)</span>
   <span style="color: #d33682;">(</span><span style="color: #859900; font-weight: bold; font-style: italic;">or</span> <span style="color: #859900;">(</span><span style="color: #b58900; background-color: #f9f6ed;">+eglot/ext-uri-to-path</span> uri<span style="color: #859900;">)</span>
       <span style="color: #859900;">(</span><span style="color: #6c71c4; font-weight: bold;">funcall</span> orig-fn uri<span style="color: #859900;">)</span><span style="color: #d33682;">)</span><span style="color: #268bd2;">)</span>
 
@@ -234,9 +235,9 @@ lsp-mode 和 dap-mode 基本上已经在 Emacs 上还原了大部分 VSCode Lang
 </div>
 </div>
 
-<div id="outline-container-orgebdd2c6" class="outline-2">
-<h2 id="orgebdd2c6">总结</h2>
-<div class="outline-text-2" id="text-orgebdd2c6">
+<div id="outline-container-org7fff483" class="outline-2">
+<h2 id="org7fff483">总结</h2>
+<div class="outline-text-2" id="text-org7fff483">
 <p>
 eglot 的代码补全，错误提示，代码跳转功能都是用的 Emacs 原生的功能实现的，没有像 lsp-mode 那样引入了一大堆依赖，
 而且代码清晰可读性强。
